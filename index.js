@@ -12,7 +12,6 @@ const recipesRouter = require("./routes/recipes-routes.js");
 const reviewsRouter = require("./routes/reviews-routes.js");
 
 /////////set and use//////////
-
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
