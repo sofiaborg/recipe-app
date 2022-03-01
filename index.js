@@ -1,4 +1,4 @@
-/////////require//////////
+/////////require////////// :)
 require("dotenv").config(); //läser av .env-filen och använder variabeln som host (ist. för länken som bör vara hidden)
 require("./mongoose");
 const express = require("express");
@@ -8,6 +8,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const { allowedNodeEnvironmentFlags } = require("process");
 
 /////////set and use//////////
 app.set("view engine", "hbs");
@@ -30,6 +31,9 @@ app.engine(
   })
 );
 
+app.get('/', (req,res) => {
+  res.send('hej')
+})
 /////port///////
 app.listen(8000, () => {
   console.log("listening");
