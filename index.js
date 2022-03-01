@@ -36,5 +36,5 @@ app.get('/', (req,res) => {
 })
 /////port///////
 app.listen(8000, () => {
-  console.log("listening");
+  console.log("listening http://localhost:8000");
 });
