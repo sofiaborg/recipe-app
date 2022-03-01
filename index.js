@@ -11,7 +11,7 @@ const cookieParser = require("cookie-parser");
 const { allowedNodeEnvironmentFlags } = require("process");
 
 /////////set and use//////////
-app.set("view engine", "hbs");
+
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -31,8 +31,10 @@ app.engine(
   })
 );
 
+app.set("view engine", "hbs");
+
 app.get("/", (req, res) => {
-  res.send("hej");
+  res.render("home");
 });
 /////port///////
 app.listen(8000, () => {
