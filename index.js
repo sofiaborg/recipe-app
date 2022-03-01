@@ -31,10 +31,10 @@ app.engine(
   })
 );
 
-app.get('/', (req,res) => {
-  res.send('hej')
-})
+app.get("/", (req, res) => {
+  res.send("hej");
+});
 /////port///////
 app.listen(8000, () => {
-  console.log("listening http://localhost:8000");
+  console.log("listening http://localhost:8000 and poo");
 });
