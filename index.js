@@ -8,11 +8,11 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const recipesRouter = require('./routes/recipes-routes.js');
-const reviewsRouter = require('./routes/reviews-routes.js')
+const recipesRouter = require("./routes/recipes-routes.js");
+const reviewsRouter = require("./routes/reviews-routes.js");
 
 /////////set and use//////////
-app.set("view engine", "hbs");
+
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -32,14 +32,15 @@ app.engine(
   })
 );
 
+app.set("view engine", "hbs");
+
 app.get("/", (req, res) => {
-  res.send("yo");
+  res.render("home");
 });
 
 /// LÄGGER TILL ROUTES
-app.use('/recipes', recipesRouter);
-app.use('/reviews', reviewsRouter);
-
+app.use("/recipes", recipesRouter);
+app.use("/reviews", reviewsRouter);
 
 /////port///////
 app.listen(8000, () => {
