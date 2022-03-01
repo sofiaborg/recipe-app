@@ -34,7 +34,11 @@ app.engine(
 app.set("view engine", "hbs");
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("login-page");
+});
+
+app.get("/register", (req, res) => {
+  res.render("register-page");
 });
 
 /// LÄGGER TILL ROUTES
