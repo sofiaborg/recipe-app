@@ -8,7 +8,8 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const { allowedNodeEnvironmentFlags } = require("process");
+const recipesRouter = require('./routes/recipes-routes.js');
+const reviewsRouter = require('./routes/reviews-routes.js')
 
 /////////set and use//////////
 app.set("view engine", "hbs");
@@ -32,8 +33,14 @@ app.engine(
 );
 
 app.get("/", (req, res) => {
-  res.send("hej");
+  res.send("yo");
 });
+
+/// LÄGGER TILL ROUTES
+app.use('/recipes', recipesRouter);
+app.use('/reviews', reviewsRouter);
+
+
 /////port///////
 app.listen(8000, () => {
   console.log("listening now at http://localhost:8000");
