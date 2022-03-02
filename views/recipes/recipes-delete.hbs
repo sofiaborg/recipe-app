@@ -1,1 +1,9 @@
 <p>Are you sure you wish to delete this recipe?</p>
+
+<h3>{{recipeTitle}}</h3>
+<p>Cookingtime: {{recipeTime}} minutes</p>
+<p>{{recipeDescription}}</p>
+
+<form action="/recipes/{{_id}}/delete" method="post">
+    <input type="submit" value="Delete">
+</form>
