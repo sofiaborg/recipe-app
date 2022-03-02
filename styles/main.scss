@@ -1,1 +1,33 @@
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
+body{
+    margin: 0 auto;
+}
+
+// MY-RECIPES-HBS
+.my-recipes-container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:25px;
+}
+
+.each-recipes-container{
+    padding: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.418);
+}
+
+
+@media screen and(min-width: 768px) {
+    
+}
+
+@media screen and(min-width: 1024px) {
+    body{
+        max-width: 800px;
+    }
+}
