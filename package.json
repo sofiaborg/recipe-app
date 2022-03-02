@@ -23,8 +23,9 @@
   },
   "scripts": {
     "sass-watch": "sass --no-source-map --watch styles/main.scss public/css/main.css",
-    "nodemon-watch": "nodemon index.js -e *",
-    "dev": "npm-run-all --parallel sass-watch nodemon-watch"
+    "nodemon-watch-win": "nodemon index.js -e *",
+    "nodemon-watch-mac": "nodemon --ext '*'",
+    "dev": "npm-run-all --parallel sass-watch nodemon-watch-win nodemon-watch-mac"
   },
   "repository": {
     "type": "git",
