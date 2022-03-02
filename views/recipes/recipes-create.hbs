@@ -1,9 +1,11 @@
 <h2>Create new recipe</h2>
 <p>All recipes are for 4 people</p>
 
+<div class="my-recipes-container">
 <form action="/recipes/create" method="post">
     <input type="text" name="recipeTitle" placeholder="Title">
     <input type="number" name="recipeTime" placeholder="Cooking time"><br><br>
     <textarea name="recipeDescription" cols="50" rows="20">Recipe description</textarea><br>
     <input type="submit" value="Save">
 </form>
+</div>
