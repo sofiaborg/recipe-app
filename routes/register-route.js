@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
         lastname,
         email,
         username,
-        password: utils.getHashedPassword(password),
+        password: utils.hashedPassword(password),
       });
 
       await newUser.save();

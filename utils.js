@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 
 //skapa en variabel som krypterar lösenordet
-const getHashedPassword = (password) => {
+const hashedPassword = (password) => {
   const hashValue = bcrypt.hashSync(password, 8); //siffran = rundor som hashen kör
   return hashValue;
 };
@@ -12,4 +12,4 @@ const comparePassword = (password, hash) => {
   return correct;
 };
 
-module.exports = { getHashedPassword, comparePassword };
+module.exports = { hashedPassword, comparePassword };

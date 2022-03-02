@@ -1,29 +1,21 @@
-/////////require////////// :)
-require("dotenv").config(); //läser av .env-filen och använder variabeln som host (ist. för länken som bör vara hidden)
+/////////require//////////
+require("dotenv").config();
 require("./mongoose");
+
 const express = require("express");
 const exphbs = require("express-handlebars");
-const app = express();
-const path = require("path");
-const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const utils = require("./utils");
+
+const path = require("path");
+const bodyParser = require("body-parser");
+
+const startRouter = require("./routes/start-route");
 const registerRouter = require("./routes/register-route");
 const recipesRouter = require("./routes/recipes-routes.js");
 const reviewsRouter = require("./routes/reviews-routes.js");
-const startRouter = require("./routes/start-route");
 
-/////////set and use//////////
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
-// To support URL-encoded bodies
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// To parse cookies from the HTTP Request
-app.use(cookieParser());
+const app = express();
 
 /////////engine//////////
 app.engine(
@@ -35,35 +27,30 @@ app.engine(
 );
 
 app.set("view engine", "hbs");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(cookieParser());
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-//login settings
 app.use((req, res, next) => {
   const { token } = req.cookies;
 
+  //login cookies OM INLOGGAD
   if (token && jwt.verify(token, process.env.JWTSECRET)) {
     const tokenData = jwt.decode(token, process.env.JWTSECRET);
     res.locals.loggedIn = true;
-    res.locals.userId = tokenData.userId;
     res.locals.username = tokenData.username;
+    res.locals.userId = tokenData.userId;
+    // else
   } else {
     res.locals.loggedIn = false;
   }
   next();
 });
 
-const forceAuthorize = (req, res, next) => {
-  const { token } = req.cookies;
-
-  if (token && jwt.verify(token, process.env.JWTSECRET)) {
-    next();
-  } else {
-    res.sendStatus(401);
-  }
-};
-
-////////////////////////
-
-/// LÄGGER TILL ROUTES
+/// ROUTES
 app.use("/recipes", recipesRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/register", registerRouter);

@@ -1,1 +1,11 @@
-<h2>Homepage</h2>
+{{#if loggedIn}}
+  <p>Welcome {{username}}</p>
+  <form action="/log-out" method="post">
+    <input type="submit" value="log out" /></form>
+
+{{else}}
+
+  <p>You need to log in to view this page</p>
+  <p>log in <a href="/">here</a></p>
+
+{{/if}}
