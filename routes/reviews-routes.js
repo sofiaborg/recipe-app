@@ -6,4 +6,9 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 
+//GET - my reviews
+router.get('/my-reviews', (req,res) => {
+    res.render('reviews/my-reviews-list')
+})
+
 module.exports = router;
