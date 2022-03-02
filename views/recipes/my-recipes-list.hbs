@@ -1,1 +1,10 @@
 <h2>My recipes</h2>
+
+{{#each myRecipes}}
+    <h3>{{recipeTitle}}</h3>
+    <p>Cookingtime: {{recipeTime}} minutes</p>
+    <p>{{recipeDescription}}</p>
+    <a href="/recipes/{{_id}}/edit">Edit</a>
+    <a href="/recipes/delete">Edit</a>
+
+{{/each}}

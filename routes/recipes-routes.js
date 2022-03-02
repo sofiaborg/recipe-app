@@ -2,6 +2,7 @@ const express = require('express');
 const utils = require('../utils.js');
 const mongoose = require('mongoose');
 const { Router } = require('express');
+const RecipeModel = require('../models/RecipeModel.js');
 
 // const RecipeModel = require('./models/RecipeModel.js');
 
@@ -16,12 +17,25 @@ router.get('/create', (req, res) => {
     res.render('recipes/recipes-create');
 })
 
+router.post('/create', async(req,res) => {
+    const newRecipe =  new RecipeModel(req.body);
+    await newRecipe.save();
+
+    res.render('recipes/my-recipes-list')
+})
+
 //GET - my recipes
-router.get('/my-recipes', (req,res) => {
-    res.render('recipes/my-recipes-list');
+router.get('/my-recipes', async(req,res) => {
+    const myRecipes = await RecipeModel.find().lean();
+
+    res.render('recipes/my-recipes-list', {myRecipes});
 });
 
+router.all('/:id/edit', async(req,res) => {
+    const recipe = await RecipeModel.findById(req.params.id).lean();
 
+    res.render('recipes/recipes-edit', recipe)
+})
 
 //LOG OUT
 router.post('/log-out', (req,res) => {
