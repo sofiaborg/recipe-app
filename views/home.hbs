@@ -5,7 +5,13 @@
 
 {{else}}
 
-  <p>You need to log in to view this page</p>
-  <p>log in <a href="/">here</a></p>
+  <h2>Log in to your account</h2>
+
+  <form action="/" method="post">
+    <input type="text" name="userUsername" placeholder="Username" />
+    <input type="password" name="userPassword" placeholder="Password" />
+    <input type="submit" value="Log in" />
+  </form>
+  <a href="/register">Register account</a>
 
 {{/if}}

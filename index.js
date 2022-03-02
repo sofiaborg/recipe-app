@@ -10,8 +10,7 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const bodyParser = require("body-parser");
 
-const startRouter = require("./routes/start-route");
-const registerRouter = require("./routes/register-route");
+const userRouter = require("./routes/user-route");
 const recipesRouter = require("./routes/recipes-routes.js");
 const reviewsRouter = require("./routes/reviews-routes.js");
 
@@ -51,10 +50,13 @@ app.use((req, res, next) => {
 });
 
 /// ROUTES
+app.get("/", (req, res) => {
+  res.render("home");
+});
+
+app.use("/", userRouter);
 app.use("/recipes", recipesRouter);
 app.use("/reviews", reviewsRouter);
-app.use("/register", registerRouter);
-app.use("/", startRouter);
 
 /////port///////
 app.listen(8000, () => {

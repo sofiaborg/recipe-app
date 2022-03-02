@@ -2,12 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const RecipeModel = require("../models/RecipeModel.js");
 const router = express.Router();
-router.get("/", (req, res) => {
-  res.render("home");
-});
+const { forceAuthorize } = require("../utils");
 
 //GET - create recipes
-router.get("/create", (req, res) => {
+router.get("/create", forceAuthorize, (req, res) => {
   res.render("recipes/recipes-create");
 });
 
