@@ -23,7 +23,7 @@
   },
   "scripts": {
     "sass-watch": "sass --no-source-map --watch styles/main.scss public/css/main.css",
-    "nodemon-watch": "nodemon --ext '*'",
+    "nodemon-watch": "nodemon index.js -e *",
     "dev": "npm-run-all --parallel sass-watch nodemon-watch"
   },
   "repository": {
