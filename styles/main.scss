@@ -1,9 +1,17 @@
+@import "hamburger";
+@import "menudesktop";
+
 *{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 body{
+    @include hamburger;
     margin: 0 auto;
+}
+
+.menu-desktop {
+    visibility: hidden;
 }
 
 // MY-RECIPES-HBS
@@ -28,6 +36,9 @@ body{
 
 @media screen and(min-width: 1024px) {
     body{
-        max-width: 800px;
+        @include menudesktop;
+    }
+    .my-recipes-container{
+        padding: 0px;
     }
 }
