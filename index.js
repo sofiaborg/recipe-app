@@ -9,6 +9,8 @@ const cookieParser = require("cookie-parser");
 
 const path = require("path");
 const bodyParser = require("body-parser");
+const RecipeModel = require("./models/RecipeModel.js");
+const ReviewModel = require("./models/ReviewModel.js");
 
 const userRouter = require("./routes/user-route");
 const recipesRouter = require("./routes/recipes-routes.js");

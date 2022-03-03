@@ -9,18 +9,40 @@ const router = express.Router();
 //GET - my reviews
 router.get("/my-reviews", async (req, res) => {
   const myReviews = await ReviewModel.find().lean();
-  console.log("hello");
   res.render("reviews/my-reviews-list", { myReviews });
 });
 
-//GET - create review
-router.get("/create", (req, res) => {
-  res.render("reviews/reviews-create");
+//GET - create reviews
+router.get("/:id/edit", async (req, res) => {
+  const review = await ReviewModel.findById(req.params.id).lean();
+
+  res.render("reviews/reviews-edit", review);
 });
 
-router.post("/create", async (req, res) => {
-  const newReview = new ReviewModel(req.body);
-  await newReview.save();
+router.post("/:id/edit", async (req, res) => {
+  // const updatedReview =  ReviewModel{
+  //   reviewDescription: req.body.reviewDescription,
+  //   reviewStars: parseInt(req.body.reviewStars),
+  // };
+
+  const review = await ReviewModel.findById(req.params.id);
+
+  review.reviewDescription = req.body.reviewDescription;
+  review.reviewStars = req.body.reviewStars;
+
+  await review.save();
+
+  res.redirect("/reviews/my-reviews");
+});
+
+router.get("/:id/delete", async (req, res) => {
+  const review = await ReviewModel.findById(req.params.id).lean();
+
+  res.render("reviews/reviews-delete", review);
+});
+
+router.post("/:id/delete", async (req, res) => {
+  await ReviewModel.findByIdAndDelete(req.params.id);
 
   res.redirect("/reviews/my-reviews");
 });

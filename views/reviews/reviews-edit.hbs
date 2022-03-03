@@ -1,0 +1,8 @@
+<h2>Edit review</h2>
+
+<form action="/reviews/{{_id}}/edit" method="post">
+  <input type="text" name="reviewDescription" value="{{reviewDescription}}" />
+  <input type="number" name="reviewStars" value="{{reviewStars}}" /><br /><br />
+
+  <input type="submit" value="Save" />
+</form>
