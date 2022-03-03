@@ -54,7 +54,7 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.use("/", userRouter);
+app.use("/user", userRouter);
 app.use("/recipes", recipesRouter);
 app.use("/reviews", reviewsRouter);
 

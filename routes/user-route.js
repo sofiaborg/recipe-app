@@ -13,7 +13,7 @@ router.get("/register", (req, res) => {
   res.render("register-page");
 });
 
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
   const { firstname, lastname, email, username, password, confirmPassword } =
     req.body;
 
@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
         lastname,
         email,
         username,
-        hashedPassword: hashPassword(password),
+        password: hashPassword(password),
       });
 
       await newUser.save();
@@ -39,11 +39,11 @@ router.post("/", async (req, res) => {
 });
 
 //////LOG IN//////
-router.post("/", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   UserModel.findOne({ username }, (err, user) => {
-    if (user && comparePassword(password, user.hashedPassword)) {
+    if (user && comparePassword(password, user.password)) {
       // Logged in
       const userData = { userId: user._id, username };
       const accessToken = jwt.sign(userData, process.env.JWTSECRET);
