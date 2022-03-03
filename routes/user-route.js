@@ -19,9 +19,9 @@ router.post("/register", async (req, res) => {
 
   UserModel.findOne({ username }, async (err, user) => {
     if (user) {
-      res.send("Username already exist");
+      res.render("user-exists");
     } else if (password !== confirmPassword) {
-      res.send("Password don't match");
+      res.render("register-page"); //OBS lägg till ett meddelande om att lösen ej matchar
     } else {
       const newUser = new UserModel({
         firstname,
