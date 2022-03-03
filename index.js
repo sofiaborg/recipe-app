@@ -60,7 +60,7 @@ app.use("/user", userRouter);
 app.use("/recipes", forceAuthorize, recipesRouter);
 app.use("/reviews", forceAuthorize, reviewsRouter);
 
-/////port///////
+/////PORT///////
 app.listen(8000, () => {
   console.log("listening now at http://localhost:8000");
 });
