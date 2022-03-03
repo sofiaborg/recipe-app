@@ -3,7 +3,7 @@
     <input class="menu-btn" type="checkbox" id="menu-btn"/>
     <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
         <ul class="menu">
-            <form action="/log-out" method="post">
+            <form action="/log-out" method="post" class="nav-form">
                 <li><a href="/">Home</a></li>
                 <li><a href="/recipes/create">Create recipe</a></li>
                 <li><a href="/recipes/my-recipes">My recipes</a></li>
@@ -11,4 +11,19 @@
                 <li><input type="submit" value="Log out"></li>
             </form>
         </ul>
+
+
 </header>
+
+ {{!-- header desktop --}}
+ <div class="header">
+      <ul class="menu-desktop">
+            <form action="/log-out" method="post" class="nav-form">
+                <li><a href="/">Home</a></li>
+                <li><a href="/recipes/create">Create recipe</a></li>
+                <li><a href="/recipes/my-recipes">My recipes</a></li>
+                <li><a href="/reviews/my-reviews">My reviews</a></li>
+                <li><input type="submit" value="Log out"></li>
+            </form>
+        </ul>
+</div>

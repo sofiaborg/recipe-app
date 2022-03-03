@@ -1,0 +1,36 @@
+@mixin menudesktop{
+
+
+ .wrapper-desktop {
+        display: flex;
+        flex-direction: row;
+        float: right;
+        width: 100%;
+    }
+.header{
+width: 20%;
+min-height: 100vh;
+background: rgba(0, 128, 0, 0.562);
+    .menu-desktop {
+        visibility: visible;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        a{
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+        }
+    }
+}
+a:hover{
+    background-color: rgba(221, 221, 221, 0.233);
+}
+.header .menu-desktop form li:last-child {
+margin-left: 10px;
+}
+    .wrapper-mobile {
+        width: 80%;
+    }
+}
