@@ -54,8 +54,10 @@ app.use((req, res, next) => {
 });
 
 /// ROUTES
-app.get("/", (req, res) => {
-  res.render("home");
+app.get("/", async (req, res) => {
+  const allRecipes = await RecipeModel.find().lean();
+
+  res.render("home", { allRecipes });
 });
 
 app.use("/user", userRouter);

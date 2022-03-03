@@ -4,8 +4,10 @@ const RecipeModel = require("../models/RecipeModel.js");
 const ReviewModel = require("../models/ReviewModel.js");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.render("recipes/recipes-list");
+router.get("/", async (req, res) => {
+  const allRecipes = await RecipeModel.find().lean();
+
+  res.render("home", { allRecipes });
 });
 
 //GET - create recipes
@@ -21,11 +23,7 @@ router.post("/create", async (req, res) => {
 });
 
 //GET - my recipes
-router.get("/my-recipes", async (req, res) => {
-  const myRecipes = await RecipeModel.find().lean();
-
-  res.render("recipes/my-recipes-list", { myRecipes });
-});
+router.get("/my-recipes", async (req, res) => {});
 
 router.get("/:id", async (req, res) => {
   const recipe = await RecipeModel.findById(req.params.id).lean();
