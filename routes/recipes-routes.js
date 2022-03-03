@@ -4,6 +4,9 @@ const RecipeModel = require("../models/RecipeModel.js");
 const router = express.Router();
 const { forceAuthorize } = require("../utils");
 
+router.get("/", (req, res) => {
+  res.render("recipes/recipes-list");
+});
 //GET - create recipes
 router.get("/create", forceAuthorize, (req, res) => {
   res.render("recipes/recipes-create");
