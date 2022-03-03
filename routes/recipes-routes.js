@@ -1,22 +1,14 @@
 const express = require("express");
-const utils = require("../utils.js");
 const mongoose = require("mongoose");
-const { Router } = require("express");
 const RecipeModel = require("../models/RecipeModel.js");
-
-// const RecipeModel = require('./models/RecipeModel.js');
-
 const router = express.Router();
-
-router.get("/", (req, res) => {
-  res.render("home");
-});
+const { forceAuthorize } = require("../utils");
 
 router.get("/", (req, res) => {
   res.render("recipes/recipes-list");
 });
 //GET - create recipes
-router.get("/create", (req, res) => {
+router.get("/create", forceAuthorize, (req, res) => {
   res.render("recipes/recipes-create");
 });
 
@@ -24,7 +16,7 @@ router.post("/create", async (req, res) => {
   const newRecipe = new RecipeModel(req.body);
   await newRecipe.save();
 
-  res.redirect("/recipes/my-recipes");
+  res.redirect("recipes/my-recipes");
 });
 
 //GET - my recipes
@@ -48,7 +40,7 @@ router.post("/:id/edit", async (req, res) => {
   };
 
   await RecipeModel.updateOne({ _id: req.params.id }, { $set: updatedRecipe });
-  res.redirect("/recipes/my-recipes");
+  res.redirect("recipes/my-recipes");
 });
 
 router.get("/:id/delete", async (req, res) => {
@@ -59,7 +51,7 @@ router.get("/:id/delete", async (req, res) => {
 router.post("/:id/delete", async (req, res) => {
   await RecipeModel.findById(req.params.id).deleteOne();
 
-  res.redirect("/recipes/my-recipes");
+  res.redirect("recipes/my-recipes");
 });
 
 //LOG OUT
