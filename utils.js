@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 //skapa en variabel som krypterar lösenordet
 const hashPassword = (password) => {
@@ -13,15 +12,4 @@ const comparePassword = (password, hash) => {
   return correct;
 };
 
-const forceAuthorize = (req, res, next) => {
-  const { token } = req.cookies;
-
-  if (token && jwt.verify(token, process.env.JWTSECRET)) {
-    jwt.decode(token, process.env.JWTSECRET);
-    next();
-  } else {
-    res.sendStatus(401);
-  }
-};
-
-module.exports = { hashPassword, comparePassword, forceAuthorize };
+module.exports = { hashPassword, comparePassword };
