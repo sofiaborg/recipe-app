@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const RecipeModel = require("../models/RecipeModel.js");
+const ReviewModel = require("../models/ReviewModel.js");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -24,6 +25,15 @@ router.get("/my-recipes", async (req, res) => {
   const myRecipes = await RecipeModel.find().lean();
 
   res.render("recipes/my-recipes-list", { myRecipes });
+});
+
+router.get("/:id", async (req, res) => {
+  const recipe = await RecipeModel.findById(req.params.id).lean();
+  const review = await ReviewModel.findById(req.params.id)
+    .populate("postBy")
+    .lean();
+
+  res.render("recipes/recipes-single", { recipe, review });
 });
 
 router.get("/:id/edit", async (req, res) => {
@@ -52,6 +62,26 @@ router.post("/:id/delete", async (req, res) => {
   await RecipeModel.findById(req.params.id).deleteOne();
 
   res.redirect("recipes/my-recipes");
+});
+
+router.post("/:id/reviews", async (req, res) => {
+  const recipeId = req.params.id;
+  const newReview = new ReviewModel({
+    reviewDescription: req.body.reviewDescription,
+    reviewStars: parseInt(req.body.reviewStars),
+    postBy: recipeId,
+  });
+  await newReview.save();
+
+  res.redirect("/recipes/" + recipeId);
+});
+
+//LOG OUT
+router.post("/log-out", (req, res) => {
+  // sätt token(cookie) till en tom sträng och ta bort den direkt
+  // res.cookie("token", "", {maxAge:0})
+  console.log("working");
+  res.redirect("/");
 });
 
 module.exports = router;
