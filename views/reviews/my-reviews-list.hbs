@@ -1,1 +1,12 @@
 <h2>My reviews</h2>
+
+<div class="my-reviews-container">
+  {{#each myReviews}}
+    <div class="each-review-container">
+      <p>{{reviewDescription}}</p>
+      <p>{{reviewStars}}</p>
+      <a href="/reviews/{{_id}}/edit">Edit</a>
+      <a href="/reviews/{{_id}}/delete">Delete</a>
+    </div>
+  {{/each}}
+</div>
