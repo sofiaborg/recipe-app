@@ -1,10 +1,14 @@
+@import "hamburger";
+
 *{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 body{
+    @include hamburger;
     margin: 0 auto;
 }
+
 
 // MY-RECIPES-HBS
 .my-recipes-container{

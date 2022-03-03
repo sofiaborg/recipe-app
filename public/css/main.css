@@ -5,6 +5,58 @@
 body {
   margin: 0 auto;
 }
+body header {
+  background-color: white;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.103);
+  width: 100%;
+  z-index: 4;
+}
+body header .logo {
+  float: left;
+  display: block;
+  font-size: 1.8em;
+  padding: 10px 20px;
+}
+body header .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height 2s ease-out;
+}
+body header .menu-icon {
+  border: 1px solid red;
+  padding: 26px 18px;
+  position: relative;
+}
+body header .menu-icon .nav-icon {
+  background: 333;
+  display: block;
+  height: 2px;
+  width: 18px;
+  position: relative;
+  transition: background 0.2s ease-out;
+}
+body header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+}
+body header ul a {
+  display: block;
+  padding: 20px;
+  text-decoration: none;
+}
+body a:hover {
+  background-color: rgba(221, 221, 221, 0.233);
+}
+body header .menu-icon .nav-icon::before {
+  background: 333;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
 
 .my-recipes-container {
   padding: 20px;
