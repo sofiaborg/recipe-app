@@ -1,16 +1,26 @@
 <h2>Register new user</h2>
 
 <form action="/user/register" method="post">
-  <input type="text" name="firstname" placeholder="First name" />
-  <input type="text" name="lastname" placeholder="Surname " />
-  <input type="text" name="email" placeholder="Email" />
-  <input type="text" name="username" placeholder="Username" />
-  <input type="text" name="password" placeholder="Password" />
+  <input
+    type="text"
+    name="firstname"
+    value="{{validationUser.firstname}}"
+    placeholder="First name"
+  />
+  <input type="text" name="lastname" placeholder="Surname" required />
+  <input type="text" name="email" placeholder="Email" required />
+  <input type="text" name="username" placeholder="Username" required />
+  <input type="text" name="password" placeholder="Password" required />
   <input
     type="text
     "
     name="confirmPassword"
     placeholder="Confirm password"
+    required
   />
   <input type="submit" value="Register" />
 </form>
+
+{{#if user}}
+  <p>{{user}} already exists</p>
+{{/if}}
