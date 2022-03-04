@@ -8,6 +8,9 @@
 body{
     @include hamburger;
     margin: 0 auto;
+    img{
+        width: 160px;
+    }
 }
 
 .menu-desktop {
@@ -16,7 +19,6 @@ body{
 
 // MY-RECIPES-HBS
 .my-recipes-container{
-    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,5 +42,6 @@ body{
     }
     .my-recipes-container{
         padding: 0px;
+        margin: 20px;
     }
 }
