@@ -106,7 +106,7 @@ body header .menu form li:last-child {
   display: block;
   padding: 10px;
   text-decoration: none;
-  background: #db9e44;
+  background: #bd8532;
   margin: 20;
   border-radius: 15px;
   box-shadow: 2px 2px 2px 0px #00000063;
@@ -264,7 +264,7 @@ body img {
     display: block;
     padding: 10px;
     text-decoration: none;
-    background: #db9e44;
+    background: #bd8532;
     margin: 20;
     width: 160px;
     border-radius: 15px;
