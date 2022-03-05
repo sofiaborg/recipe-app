@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const allRecipes = await RecipeModel.find().lean();
 
-  res.render("home", { allRecipes });
+  res.render("recipes/recipes-list", { allRecipes });
 });
 
 //GET - create recipes
@@ -19,17 +19,19 @@ router.post("/create", async (req, res) => {
   const newRecipe = new RecipeModel(req.body);
   await newRecipe.save();
 
-  res.redirect("recipes/my-recipes");
+  res.redirect("/recipes/my-recipes");
 });
 
 //GET - my recipes
-router.get("/my-recipes", async (req, res) => {});
+router.get("/my-recipes", async (req, res) => {
+  const myRecipes = await RecipeModel.find().lean();
+
+  res.render("recipes/my-recipes-list", { myRecipes });
+});
 
 router.get("/:id", async (req, res) => {
   const recipe = await RecipeModel.findById(req.params.id).lean();
-  const review = await ReviewModel.findById(req.params.id)
-    .populate("postBy")
-    .lean();
+  const review = await ReviewModel.findById(req.params.id).lean();
 
   res.render("recipes/recipes-single", { recipe, review });
 });

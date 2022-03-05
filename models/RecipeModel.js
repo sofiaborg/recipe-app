@@ -4,11 +4,11 @@ const recipeSchema = new mongoose.Schema({
   recipeTitle: { type: String, required: true },
   recipeTime: { type: Number, required: true },
   recipeDescription: { type: String, required: true },
-  createdBy: {
+  /* createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
-  },
+  }, */
 });
 
 const RecipeModel = mongoose.model("Recipe", recipeSchema);

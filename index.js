@@ -54,10 +54,8 @@ app.use((req, res, next) => {
 });
 
 /// ROUTES
-app.get("/", async (req, res) => {
-  const allRecipes = await RecipeModel.find().populate("createdBy").lean();
-
-  res.render("home", { allRecipes });
+app.get("/", (req, res) => {
+  res.render("home");
 });
 
 app.use("/user", userRouter);
