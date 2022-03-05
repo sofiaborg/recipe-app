@@ -1,3 +1,7 @@
+.wrapper-mobile {
+  width: 80%;
+}
+
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
@@ -6,25 +10,65 @@ body {
   margin: 0 auto;
 }
 body header {
-  background-color: white;
+  background-color: #659B5E;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.103);
   padding: 10px;
   width: 100%;
   z-index: 4;
 }
+body header img {
+  width: 180px;
+}
 body header .logo {
   float: left;
   display: block;
-  font-size: 1.8em;
-  padding: 10px 20px;
+  padding: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  text-decoration: none;
+  color: #272d2d;
 }
 body header .menu {
   clear: both;
   max-height: 0;
-  transition: max-height 0.4s ease-out;
+  transition: max-height 0.6s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body header .menu .profile-picture {
+  width: 150px;
+  height: 150px;
+  background-color: rgba(224, 219, 219, 0.384);
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 body header .menu form {
   padding: 8px;
+}
+body header .menu form a {
+  color: black;
+  font-size: 1em;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  background: #db9e44;
+  margin: 20;
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px 0px #00000063;
+  width: 180px;
+}
+body header .menu form input {
+  border: none;
+  background-color: transparent;
+  width: 180px;
+  font-size: 1em;
+  cursor: pointer;
+  text-align: left;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 body header .menu-btn {
   display: none;
@@ -53,8 +97,24 @@ body header ul a {
   padding: 20px;
   text-decoration: none;
 }
-body a:hover {
-  background-color: rgba(221, 221, 221, 0.233);
+body header .menu form a:hover {
+  box-shadow: 2px 2px 2px 2px #00000063;
+}
+body header .menu form li:last-child {
+  color: black;
+  font-size: 1em;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  background: #bd8532;
+  margin: 20;
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px 0px #00000063;
+  width: 180px;
+}
+body header .menu form li:last-child:hover {
+  box-shadow: 2px 2px 2px 2px #00000063;
+  cursor: pointer;
 }
 body header .menu-icon .nav-icon::before {
   background: black;
@@ -75,7 +135,7 @@ body header .menu-icon .nav-icon::after {
   top: -7px;
 }
 body header .menu-btn:checked ~ .menu {
-  max-height: 300px;
+  max-height: 100vh;
 }
 body header .menu form li:last-child {
   margin-left: 20px;
@@ -92,10 +152,19 @@ body header .menu-btn:checked ~ .menu-icon .nav-icon::after {
   transform: rotate(45deg);
   top: 0;
 }
+body .header {
+  display: none;
+}
 @media screen and (min-width: 1024px) {
   body header {
     display: none;
   }
+  body .header {
+    display: block;
+  }
+}
+body img {
+  width: 160px;
 }
 
 .menu-desktop {
@@ -103,7 +172,6 @@ body header .menu-btn:checked ~ .menu-icon .nav-icon::after {
 }
 
 .my-recipes-container {
-  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -124,9 +192,32 @@ body header .menu-btn:checked ~ .menu-icon .nav-icon::after {
     width: 100%;
   }
   body .header {
-    width: 20%;
+    width: 250px;
     min-height: 100vh;
-    background: rgba(0, 128, 0, 0.562);
+    background: #659B5E;
+  }
+  body .header img {
+    width: 170px;
+  }
+  body .header .logo {
+    display: block;
+    padding: 20px;
+    font-size: 1.5em;
+    text-align: center;
+    text-decoration: none;
+    color: #272d2d;
+  }
+  body .header .profile-picture {
+    width: 150px;
+    height: 150px;
+    background-color: rgba(224, 219, 219, 0.384);
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  body .header p {
+    text-align: center;
   }
   body .header .menu-desktop {
     visibility: visible;
@@ -134,23 +225,55 @@ body header .menu-btn:checked ~ .menu-icon .nav-icon::after {
     padding: 0;
     list-style: none;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  body .header .menu-desktop input {
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    width: 160px;
+    cursor: pointer;
+    text-align: left;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   }
   body .header .menu-desktop a {
+    color: black;
+    font-size: 1em;
     display: block;
     padding: 10px;
     text-decoration: none;
+    background: #db9e44;
+    margin: 20;
+    width: 160px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px 0px #00000063;
   }
-  body a:hover {
-    background-color: rgba(221, 221, 221, 0.233);
+  body .header .menu-desktop a:hover {
+    box-shadow: 2px 2px 2px 2px #00000063;
+    cursor: pointer;
+  }
+  body .header .menu-desktop form li:last-child:hover {
+    box-shadow: 2px 2px 2px 2px #00000063;
+    cursor: pointer;
   }
   body .header .menu-desktop form li:last-child {
-    margin-left: 10px;
-  }
-  body .wrapper-mobile {
-    width: 80%;
+    margin-left: 20px;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    background: #bd8532;
+    margin: 20;
+    width: 160px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px 0px #00000063;
+    cursor: pointer;
   }
 
   .my-recipes-container {
     padding: 0px;
+    margin: 20px;
   }
 }

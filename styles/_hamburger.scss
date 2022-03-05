@@ -1,24 +1,64 @@
 @mixin hamburger {
 
     header{
-        background-color: white;
+        background-color: #659B5E;
         box-shadow:  1px 1px 4px 0 rgba(0, 0, 0, 0.103);
         // position: fixed;
         padding: 10px;
         width: 100%;
         z-index: 4;
+        img{
+            width:180px;
+        }
         .logo{ 
         float:left;
         display: block;
-        font-size: 1.8em;
-        padding: 10px 20px;
+        padding: 10px;   
+        font-size: 1.5em;
+        text-align: center; 
+        text-decoration: none;
+        color: #272d2d;
         }
         .menu{
             clear: both;
             max-height: 0;
-            transition: max-height 0.4s ease-out;
+            transition: max-height 0.6s ease-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .profile-picture{
+                width: 150px;
+                height: 150px;
+                background-color:rgba(224, 219, 219, 0.384);
+                border-radius: 50%;
+                margin: 0 auto;
+                margin-bottom: 30px;
+                margin-top: 30px;
+            }
             form{
                 padding:8px;
+                a{
+                    color: black;
+                    font-size: 1em;
+                    display: block;
+                    padding: 10px;
+                    text-decoration: none;
+                    background: #db9e44;
+                    margin: 20;
+                    border-radius: 15px;
+                    box-shadow: 2px 2px 2px 0px #00000063; 
+                    width: 180px;
+                }
+                input{
+                    border:none;
+                    background-color: transparent;
+                    width: 180px;
+                    font-size: 1em;
+                    cursor: pointer;
+                    text-align: left;
+                    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                }
             }
         }
         .menu-btn{
@@ -50,9 +90,28 @@
             }
         }
     }
-    a:hover{
-        background-color: rgba(221, 221, 221, 0.233);
+    header .menu form a:hover{
+        box-shadow: 2px 2px 2px 2px #00000063;
     }
+
+    header .menu form li:last-child {
+        color: black;
+        font-size: 1em;
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        background: #bd8532;
+        margin: 20;
+        border-radius: 15px;
+        box-shadow: 2px 2px 2px 0px #00000063; 
+        width: 180px;
+        }
+
+    header .menu form li:last-child:hover {
+        box-shadow: 2px 2px 2px 2px #00000063;
+        cursor: pointer;
+        }
+      
 
     header .menu-icon .nav-icon::before{
         background: black;
@@ -74,7 +133,7 @@
     }
 
     header .menu-btn:checked ~ .menu {
-        max-height: 300px;
+        max-height: 100vh;
     }
 
     header .menu form li:last-child {
@@ -94,11 +153,22 @@
         transform: rotate(45deg);
         top:0
     }
-
+    // .logo-desktop{
+    //         display: none;
+    //     }
+        .header{
+            display: none;
+        }
     @media screen and(min-width: 1024px) {
         header {
             display: none;
         }
+    //    .logo-desktop{
+    //        display:block;
+    //    }
+    .header{
+        display: block;
+    }
         
     }
 }
