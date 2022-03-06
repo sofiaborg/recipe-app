@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const allRecipes = await RecipeModel.find().populate("createdByUser").lean();
   const users = await UserModel.find().lean();
-  console.log(users);
+
   res.render("home", { allRecipes, users });
 });
 
@@ -19,14 +19,11 @@ router.get("/create", (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  const { token } = req.cookies;
-  const tokenData = jwt.decode(token, process.env.JWTSECRET);
-
   const newRecipe = new RecipeModel({
     recipeTitle: req.body.recipeTitle,
     recipeTime: parseInt(req.body.recipeTime),
     recipeDescription: req.body.recipeDescription,
-    createdByUser: tokenData.userId,
+    createdByUser: req.body.createdByUser,
   });
 
   await newRecipe.save();
@@ -42,8 +39,11 @@ router.get("/my-recipes", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const recipe = await RecipeModel.findById(req.params.id).lean();
-  const review = await ReviewModel.findById(req.params.id).lean();
+  const recipe = await RecipeModel.findById(req.params.id)
+    .populate("createdByUser")
+    .lean();
+  const review = await ReviewModel.findById(req.params.id)
+  .lean();
 
   res.render("recipes/recipes-single", { recipe, review });
 });
