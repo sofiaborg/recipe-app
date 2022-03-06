@@ -1,47 +1,60 @@
 @import "hamburger";
 @import "menudesktop";
+@import "stars";
 
-*{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+* {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
-body{
-    @include hamburger;
-    margin: 0 auto;
-    img{
-        width: 160px;
-    }
+body {
+  @include hamburger;
+  margin: 0 auto;
+  img {
+    width: 160px;
+  }
 }
 
 .menu-desktop {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 // MY-RECIPES-HBS
-.my-recipes-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap:25px;
+.my-recipes-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
 }
 
-.each-recipes-container{
-    padding: 25px;
-    border: 1px solid rgba(0, 0, 0, 0.418);
+.each-recipes-container {
+  padding: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.418);
 }
 
+.my-reviews-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.each-reviews-container {
+  padding: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.418);
+}
 
 @media screen and(min-width: 768px) {
-    
 }
 
 @media screen and(min-width: 1024px) {
-    body{
-        @include menudesktop;
-    }
-    .my-recipes-container{
-        padding: 0px;
-        margin: 20px;
-    }
+  body {
+    @include menudesktop;
+  }
+  .my-recipes-container {
+    padding: 0px;
+    margin: 20px;
+  }
 }

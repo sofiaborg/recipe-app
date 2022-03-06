@@ -80,12 +80,15 @@ router.post("/:id/delete", async (req, res) => {
 });
 
 router.post("/:id/reviews", async (req, res) => {
+  console.log(req.body);
   const recipeId = req.params.id;
   const newReview = new ReviewModel({
     reviewDescription: req.body.reviewDescription,
     reviewStars: parseInt(req.body.reviewStars),
-    postBy: recipeId,
+
+    //postBy: recipeId,
   });
+  console.log("titta här", newReview);
   await newReview.save();
 
   res.redirect("/recipes/" + recipeId);
