@@ -3,15 +3,14 @@
 }
 
 * {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 body {
   margin: 0 auto;
 }
 body header {
-  background-color: #659b5e;
+  background-color: #659B5E;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.103);
   padding: 10px;
   width: 100%;
@@ -69,8 +68,7 @@ body header .menu form input {
   font-size: 1em;
   cursor: pointer;
   text-align: left;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 body header .menu-btn {
   display: none;
@@ -186,19 +184,6 @@ body img {
   border: 1px solid rgba(0, 0, 0, 0.418);
 }
 
-.my-reviews-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-}
-
-.each-reviews-container {
-  padding: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.418);
-}
-
 @media screen and (min-width: 1024px) {
   body .wrapper-desktop {
     display: flex;
@@ -209,7 +194,7 @@ body img {
   body .header {
     width: 250px;
     min-height: 100vh;
-    background: #659b5e;
+    background: #659B5E;
   }
   body .header img {
     width: 170px;
@@ -252,8 +237,7 @@ body img {
     width: 160px;
     cursor: pointer;
     text-align: left;
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-      "Lucida Sans", Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   }
   body .header .menu-desktop a {
     color: black;

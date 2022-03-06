@@ -20,12 +20,12 @@ router.post("/register", async (req, res) => {
   UserModel.findOne({ username }, async (err, user) => {
     if (user) {
       res.render("register-page", {
-        error: 'Username already exist'
+        error: "Username already exist",
       });
     } else if (password !== confirmPassword) {
       res.render("register-page", {
-        error: 'Password not matching'
-      }); //OBS lägg till ett meddelande om att lösen ej matchar
+        error: "Password not matching",
+      });
     } else {
       const newUser = new UserModel({
         firstname,
@@ -33,6 +33,7 @@ router.post("/register", async (req, res) => {
         email,
         username,
         password: hashPassword(password),
+        recipeByUser,
       });
 
       await newUser.save();

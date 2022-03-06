@@ -1,11 +1,12 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const RecipeModel = require("../models/RecipeModel.js");
 const ReviewModel = require("../models/ReviewModel.js");
+const RecipeModel = require("../models/RecipeModel");
+
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const allRecipes = await RecipeModel.find().lean();
+  const allRecipes = await RecipeModel.find().populate("createdByUser").lean();
+  console.log(allRecipes);
 
   res.render("recipes/recipes-list", { allRecipes });
 });
