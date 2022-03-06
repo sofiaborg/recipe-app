@@ -5,10 +5,10 @@ const RecipeSchema = new Schema({
   recipeTime: { type: Number, required: true },
   recipeDescription: { type: String, required: true },
   createdByUser: [
-    { type: Schema.Types.ObjectId, ref: "Users", required: true },
+    { type: Schema.Types.ObjectId, ref: "users", required: true },
   ],
 });
 
-const RecipeModel = model("Recipes", RecipeSchema);
+const RecipeModel = model("recipes", RecipeSchema);
 
 module.exports = RecipeModel;

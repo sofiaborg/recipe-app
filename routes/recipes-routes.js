@@ -1,14 +1,16 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const ReviewModel = require("../models/ReviewModel.js");
 const RecipeModel = require("../models/RecipeModel");
+const UserModel = require("../models/UserModel");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   const allRecipes = await RecipeModel.find().populate("createdByUser").lean();
-  console.log(allRecipes);
-
-  res.render("recipes/recipes-list", { allRecipes });
+  const users = await UserModel.find().lean();
+  console.log(users);
+  res.render("home", { allRecipes, users });
 });
 
 //GET - create recipes
@@ -17,7 +19,16 @@ router.get("/create", (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  const newRecipe = new RecipeModel(req.body);
+  const { token } = req.cookies;
+  const tokenData = jwt.decode(token, process.env.JWTSECRET);
+
+  const newRecipe = new RecipeModel({
+    recipeTitle: req.body.recipeTitle,
+    recipeTime: parseInt(req.body.recipeTime),
+    recipeDescription: req.body.recipeDescription,
+    createdByUser: tokenData.userId,
+  });
+
   await newRecipe.save();
 
   res.redirect("/recipes/my-recipes");
