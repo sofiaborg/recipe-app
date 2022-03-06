@@ -19,11 +19,15 @@ router.get("/create", (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
+  //hämtar id från inloggad user för att kunna visa vem som skapat respektive recept
+  const { token } = req.cookies;
+  const tokenData = jwt.decode(token, process.env.JWTSECRET);
+
   const newRecipe = new RecipeModel({
     recipeTitle: req.body.recipeTitle,
     recipeTime: parseInt(req.body.recipeTime),
     recipeDescription: req.body.recipeDescription,
-    createdByUser: req.body.createdByUser,
+    createdByUser: tokenData.userId, //hämtar userId från cookies!!
   });
 
   await newRecipe.save();
@@ -42,8 +46,7 @@ router.get("/:id", async (req, res) => {
   const recipe = await RecipeModel.findById(req.params.id)
     .populate("createdByUser")
     .lean();
-  const review = await ReviewModel.findById(req.params.id)
-  .lean();
+  const review = await ReviewModel.findById(req.params.id).lean();
 
   res.render("recipes/recipes-single", { recipe, review });
 });
