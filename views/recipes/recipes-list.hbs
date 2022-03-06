@@ -3,11 +3,9 @@
 <div class="all-recipes-container">
   {{#each allRecipes}}
     <div class="each-recipes-container">
-      <h3>{{recipeTitle}}</h3>
+      <h3><a href="/recipes/{{_id}}">{{recipeTitle}}</a></h3>
       <p>{{recipeDescription}}</p>
       <p>{{recipeTime}}</p>
-      {{!--  <p>Created by:
-        <a href="/user/{{createdBy._id}}">{{createdBy.username}}</a></p> --}}
       <a href="/recipe/create"></a>
     </div>
   {{/each}}

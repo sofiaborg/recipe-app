@@ -27,7 +27,7 @@ router.post("/:id/edit", async (req, res) => {
   const review = await ReviewModel.findById(req.params.id);
 
   review.reviewDescription = req.body.reviewDescription;
-  review.reviewStars = req.body.reviewStars;
+  review.reviewStars = parseInt(req.body.reviewStars);
 
   await review.save();
 

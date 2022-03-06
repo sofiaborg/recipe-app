@@ -2,16 +2,67 @@
   width: 80%;
 }
 
+.wrapper {
+  position: relative;
+  display: inline-block;
+  border: none;
+  font-size: 14px;
+  margin: 50px auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.wrapper input {
+  border: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  opacity: 0;
+}
+
+.wrapper label {
+  position: relative;
+  float: right;
+  color: #c8c8c8;
+}
+
+.wrapper label:before,
+.star {
+  margin: 5px;
+  content: "\f005";
+  font-family: FontAwesome;
+  display: inline-block;
+  font-size: 1.5em;
+  color: #ccc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.wrapper input:checked ~ label:before {
+  color: #ffc107;
+}
+
+.wrapper label:hover ~ label:before {
+  color: #ffdb70;
+}
+
+.wrapper label:hover:before {
+  color: #ffc107;
+}
+
 * {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 body {
   margin: 0 auto;
 }
 body header {
-  background-color: #659b5e;
+  background-color: #659B5E;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.103);
   padding: 10px;
   width: 100%;
@@ -69,8 +120,7 @@ body header .menu form input {
   font-size: 1em;
   cursor: pointer;
   text-align: left;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 body header .menu-btn {
   display: none;
@@ -209,7 +259,7 @@ body img {
   body .header {
     width: 250px;
     min-height: 100vh;
-    background: #659b5e;
+    background: #659B5E;
   }
   body .header img {
     width: 170px;
@@ -252,8 +302,7 @@ body img {
     width: 160px;
     cursor: pointer;
     text-align: left;
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-      "Lucida Sans", Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   }
   body .header .menu-desktop a {
     color: black;

@@ -3,7 +3,7 @@
 <div class="my-recipes-container">
   {{#each myRecipes}}
     <div class="each-recipes-container">
-      <h3><a href="/recipes/{{_id}}">{{recipeTitle}}</a></h3>
+      <h3>{{recipeTitle}}</h3>
       <p>Cookingtime: {{recipeTime}} minutes</p>
       <p>{{recipeDescription}}</p>
       <a href="/recipes/{{_id}}/edit">Edit</a>

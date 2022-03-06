@@ -1,16 +1,29 @@
-<h2>{{recipe.recipeTitle}} </h2>
-<p>{{recipe.recipeTime}}</p>
-<p>{{recipe.recipeDescription}}</p>
+<div class="each-recipes-container">
+  <h2>{{recipe.recipeTitle}} </h2>
+  <p>Cookingtime: {{recipe.recipeTime}} minutes</p>
+  <p>{{recipe.recipeDescription}}</p>
+</div>
 
 <p>{{postBy.reviewDescription}}</p>
 
-<h2>Review this recipe!</h2>
+<h2>Review this recipe</h2>
 
 <div class="my-reviews-container">
   <form action="/recipes/{{recipe._id}}/reviews" method="post">
     <textarea name="reviewDescription" cols="50" rows="20">Review</textarea><br
     />
-    <input type="number" name="reviewStars" />
+    <div class="wrapper">
+      <input type="radio" id="st1" value="5" name="reviewStars" />
+      <label for="st1"></label>
+      <input type="radio" id="st2" value="4" name="reviewStars" />
+      <label for="st2"></label>
+      <input type="radio" id="st3" value="3" name="reviewStars" />
+      <label for="st3"></label>
+      <input type="radio" id="st4" value="2" name="reviewStars" />
+      <label for="st4"></label>
+      <input type="radio" id="st5" value="1" name="reviewStars" />
+      <label for="st5"></label>
+    </div>
     <input type="submit" value="Save" />
   </form>
 </div>
