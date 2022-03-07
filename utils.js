@@ -22,4 +22,18 @@ function validateRecipe(recipe) {
   return valid;
 }
 
-module.exports = { hashPassword, comparePassword, validateRecipe };
+//skapa ett unikt filnamn till uppladdade bilder
+const getUniqueFilename = (filename) => {
+  const timestamp = Date.now();
+
+  const extension = filename.split(".").pop();
+
+  return `${timestamp}.${extension}`;
+};
+
+module.exports = {
+  hashPassword,
+  comparePassword,
+  getUniqueFilename,
+  validateRecipe,
+};
