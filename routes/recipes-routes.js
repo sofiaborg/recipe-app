@@ -80,7 +80,7 @@ router.post("/:id/edit", async (req, res) => {
   };
 
   await RecipeModel.updateOne({ _id: req.params.id }, { $set: updatedRecipe });
-  res.redirect("recipes/my-recipes");
+  res.redirect("/recipes/my-recipes");
 });
 
 router.get("/:id/delete", async (req, res) => {
