@@ -1,6 +1,20 @@
 {{#if loggedIn}}
   {{!-- <p>Welcome {{username}}</p> --}}
 
+  <h2>All recipes</h2>
+
+  <div class="all-recipes-container">
+    {{#each allRecipes}}
+      <div class="each-recipe-container">
+        <h3> <a href="/recipes/{{_id}}">{{recipeTitle}}</a> </h3>
+        <p>{{recipeTime}}</p>
+        <p>{{recipeDescription}}</p>
+        <p>created by: {{createdByUser.username}}</p>
+        <a href="/recipe/create"></a>
+      </div>
+    {{/each}}
+  </div>
+
 {{else}}
 
   <h2>Log in to your account</h2>

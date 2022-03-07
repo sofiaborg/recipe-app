@@ -1,46 +1,45 @@
-
-
 {{#if loggedIn}}
 
-<header>
-    <a href="/recipes" class="logo"><img src="/images/foodies.jpg" alt=""></a>
-    
-    <input class="menu-btn" type="checkbox" id="menu-btn"/>
-    <label class="menu-icon" for="menu-btn"><span class="nav-icon"></span></label>
-       
-        <ul class="menu">
-             <div class="profile-picture"></div>
-            <p>Welcome <i>{{username}}</i></p>
-            <form action="/user/log-out" method="post" class="nav-form">
-                {{!-- <li><a href="/">Home</a></li> --}}
-                <li><a href="/recipes">All recipes</a></li>
-                <li><a href="/recipes/create">Create recipe</a></li>
-                <li><a href="/recipes/my-recipes">My recipes</a></li>
-                <li><a href="/reviews/my-reviews">My reviews</a></li>
-                <li><input type="submit" value="Log out"></li>
-            </form>
-        </ul>
+  <header>
+    <a href="/recipes" class="logo"><img src="/images/foodies.jpg" alt="" /></a>
 
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span
+        class="nav-icon"
+      ></span></label>
 
-</header>
+    <ul class="menu">
+      <div class="profile-picture"></div>
+      <p>Welcome <i>{{username}}</i></p>
+      <form action="/user/log-out" method="post" class="nav-form">
+        {{! <li><a href="/">Home</a></li> }}
+        <li><a href="/recipes">All recipes</a></li>
+        <li><a href="/recipes/create">Create recipe</a></li>
+        <li><a href="/recipes/my-recipes">My recipes</a></li>
+        <li><a href="/reviews/my-reviews">My reviews</a></li>
+        <li><input type="submit" value="Log out" /></li>
+      </form>
+    </ul>
 
- {{!-- header desktop --}}
- <div class="header">
-     <a href="/recipes" class="logo"><img src="/images/foodies.jpg" alt=""></a>
+  </header>
 
-     <div class="profile-picture"></div>
-       <p>Welcome <i>{{username}}</i></p>
-      <ul class="menu-desktop">
-            <form action="/user/log-out" method="post" class="nav-form">
-                {{!-- <li><a href="/">Home</a></li> --}}
-                <li><a href="/recipes">All recipes</a></li>
-                <li><a href="/recipes/create">Create recipe</a></li>
-                <li><a href="/recipes/my-recipes">My recipes</a></li>
-                <li><a href="/reviews/my-reviews">My reviews</a></li>
-                <li><input type="submit" value="Log out"></li>
-            </form>
-        </ul>
-</div>
+  {{! header desktop }}
+  <div class="header">
+    <a href="/recipes" class="logo"><img src="/images/foodies.jpg" alt="" /></a>
+
+    <div class="profile-picture"></div>
+    <p>Welcome <i>{{username}}</i></p>
+    <ul class="menu-desktop">
+      <form action="/user/log-out" method="post" class="nav-form">
+        {{! <li><a href="/">Home</a></li> }}
+        <li><a href="/recipes">All recipes</a></li>
+        <li><a href="/recipes/create">Create recipe</a></li>
+        <li><a href="/recipes/my-recipes">My recipes</a></li>
+        <li><a href="/reviews/my-reviews">My reviews</a></li>
+        <li><input type="submit" value="Log out" /></li>
+      </form>
+    </ul>
+  </div>
 {{else}}
-    <a href="/" class="logo"><img src="/images/foodies.jpg" alt=""></a>
+  <a href="/" class="logo"><img src="/images/foodies.jpg" alt="" /></a>
 {{/if}}

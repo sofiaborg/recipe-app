@@ -1,10 +1,11 @@
 <h2>All recipes</h2>
 
 <div class="all-recipes-container">
-  {{#each allReviews}}
-    <div class="each-recipe-container">
-      <h3>{{reviewTitle}}</h3>
-      <p>{{reviewText}}</p>
+  {{#each allRecipes}}
+    <div class="each-recipes-container">
+      <h3><a href="/recipes/{{_id}}">{{recipeTitle}}</a></h3>
+      <p>{{recipeDescription}}</p>
+      <p>{{recipeTime}}</p>
       <a href="/recipe/create"></a>
     </div>
   {{/each}}

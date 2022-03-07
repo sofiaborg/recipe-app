@@ -1,11 +1,16 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const RecipeModel = require("../models/RecipeModel.js");
+const jwt = require("jsonwebtoken");
 const ReviewModel = require("../models/ReviewModel.js");
+const RecipeModel = require("../models/RecipeModel");
+const UserModel = require("../models/UserModel");
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.render("recipes/recipes-list");
+router.get("/", async (req, res) => {
+  const allRecipes = await RecipeModel.find().populate("createdByUser").lean();
+  const users = await UserModel.find().lean();
+
+  res.render("home", { allRecipes, users });
 });
 
 //GET - create recipes
@@ -14,7 +19,17 @@ router.get("/create", (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  const newRecipe = new RecipeModel(req.body);
+  //hämtar id från inloggad user för att kunna visa vem som skapat respektive recept
+  const { token } = req.cookies;
+  const tokenData = jwt.decode(token, process.env.JWTSECRET);
+
+  const newRecipe = new RecipeModel({
+    recipeTitle: req.body.recipeTitle,
+    recipeTime: parseInt(req.body.recipeTime),
+    recipeDescription: req.body.recipeDescription,
+    createdByUser: tokenData.userId, //hämtar userId från cookies!!
+  });
+
   await newRecipe.save();
 
   res.redirect("/recipes/my-recipes");
@@ -28,10 +43,10 @@ router.get("/my-recipes", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const recipe = await RecipeModel.findById(req.params.id).lean();
-  const review = await ReviewModel.findById(req.params.id)
-    .populate("postBy")
+  const recipe = await RecipeModel.findById(req.params.id)
+    .populate("createdByUser")
     .lean();
+  const review = await ReviewModel.findById(req.params.id).lean();
 
   res.render("recipes/recipes-single", { recipe, review });
 });
@@ -65,12 +80,15 @@ router.post("/:id/delete", async (req, res) => {
 });
 
 router.post("/:id/reviews", async (req, res) => {
+  console.log(req.body);
   const recipeId = req.params.id;
   const newReview = new ReviewModel({
     reviewDescription: req.body.reviewDescription,
     reviewStars: parseInt(req.body.reviewStars),
-    postBy: recipeId,
+
+    //postBy: recipeId,
   });
+  console.log("titta här", newReview);
   await newReview.save();
 
   res.redirect("/recipes/" + recipeId);
