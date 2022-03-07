@@ -6,7 +6,7 @@ const recipeSchema = new mongoose.Schema({
   recipeDescription: { type: String, required: true },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "User",  
     required: true,
   },
 });

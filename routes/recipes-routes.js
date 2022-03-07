@@ -17,7 +17,7 @@ router.post("/create", async (req, res) => {
   const newRecipe = new RecipeModel(req.body);
   await newRecipe.save();
 
-  res.redirect("recipes/my-recipes");
+  res.redirect("/recipes/my-recipes");
 });
 
 //GET - my recipes
