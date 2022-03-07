@@ -65,6 +65,13 @@ app.use("/user", userRouter);
 app.use("/recipes", forceAuthorize, recipesRouter);
 app.use("/reviews", forceAuthorize, reviewsRouter);
 
+// 404
+// app.use('/', (req,res) => {
+//   // vilken??
+//   // res.sendStatus(404).render('not-found')
+//   res.render('not-found')
+// })
+
 /////PORT///////
 app.listen(8000, () => {
   console.log("listening now at http://localhost:8000");
