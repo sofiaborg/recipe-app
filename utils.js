@@ -12,4 +12,13 @@ const comparePassword = (password, hash) => {
   return correct;
 };
 
-module.exports = { hashPassword, comparePassword };
+//skapa ett unikt filnamn till uppladdade bilder
+const getUniqueFilename = (filename) => {
+    const timestamp = Date.now();
+
+    const extension = filename.split(".").pop();
+
+    return `${timestamp}.${extension}`
+}
+
+module.exports = { hashPassword, comparePassword, getUniqueFilename };

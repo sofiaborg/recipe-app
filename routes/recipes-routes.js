@@ -1,10 +1,14 @@
 const express = require("express");
+const fileUpload = require('express-fileupload');
 const jwt = require("jsonwebtoken");
 const ReviewModel = require("../models/ReviewModel.js");
 const RecipeModel = require("../models/RecipeModel");
 const UserModel = require("../models/UserModel");
+const { getUniqueFilename } = require("../utils.js");
+// const path = require('path');
 
 const router = express.Router();
+
 
 router.get("/", async (req, res) => {
   const allRecipes = await RecipeModel.find().populate("createdByUser").lean();
@@ -23,16 +27,27 @@ router.post("/create", async (req, res) => {
   const { token } = req.cookies;
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
 
+  // håmtar fil från formuläret, filnamn och vart filen ska sparas
+  const image = req.files.image;
+  const filename = getUniqueFilename(image.name);
+  const uploadPath = './public/uploads/' + filename;
+
+
+  await image.mv(uploadPath);
+
   const newRecipe = new RecipeModel({
     recipeTitle: req.body.recipeTitle,
     recipeTime: parseInt(req.body.recipeTime),
     recipeDescription: req.body.recipeDescription,
-    createdByUser: tokenData.userId, //hämtar userId från cookies!!
+    imageUrl: "/uploads/" + filename,
+    createdByUser: tokenData.userId //hämtar userId från cookies!!
+    
   });
-
+    
+  // await newRecipe.save();
   await newRecipe.save();
 
-  res.redirect("/recipes/my-recipes");
+  res.redirect("/recipes/my-recipes" );
 });
 
 //GET - my recipes
@@ -76,7 +91,7 @@ router.get("/:id/delete", async (req, res) => {
 router.post("/:id/delete", async (req, res) => {
   await RecipeModel.findById(req.params.id).deleteOne();
 
-  res.redirect("recipes/my-recipes");
+  res.redirect("/recipes/my-recipes");
 });
 
 router.post("/:id/reviews", async (req, res) => {
