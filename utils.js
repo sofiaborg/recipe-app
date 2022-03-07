@@ -12,4 +12,14 @@ const comparePassword = (password, hash) => {
   return correct;
 };
 
-module.exports = { hashPassword, comparePassword };
+function validateRecipe(recipe) {
+  let valid = true;
+
+  valid = valid && recipe.recipeTitle;
+  valid = valid && recipe.recipeTime > 0;
+  valid = valid && recipe.recipeDescription;
+
+  return valid;
+}
+
+module.exports = { hashPassword, comparePassword, validateRecipe };
