@@ -37,18 +37,26 @@ router.post("/create", async (req, res) => {
 
 //////hämta ett single recipe och posta en review på receptet//////
 router.get("/:id", async (req, res) => {
-  res.render("recipes/recipes-single");
+  const singleRecipe = await RecipeModel.findById(req.params.id).lean();
+
+  res.render("recipes/recipes-single", { singleRecipe });
 });
 
-router.post("/:id/reviews", async (req, res) => {
+router.post("/:id/reviews/", async (req, res) => {
   const recipeId = req.params.id;
   const newReview = new ReviewModel({
     reviewDescription: req.body.reviewDescription,
     reviewStars: parseInt(req.body.reviewStars),
+    reviewed: recipeId,
   });
+
+  let reviewedRecipe = await RecipeModel.findOne({ _id: recipeId });
+
+  reviewedRecipe.reviews.push(newReview._id);
+
   await newReview.save();
 
-  res.redirect("/recipes/" + recipeId);
+  res.redirect("/recipes/" + id);
 });
 
 /////////////////////////

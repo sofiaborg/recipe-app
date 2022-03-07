@@ -1,13 +1,11 @@
-<h2>{{recipe.recipeTitle}} </h2>
-<p>{{recipe.recipeTime}}</p>
-<p>{{recipe.recipeDescription}}</p>
-
-<p>{{postBy.reviewDescription}}</p>
+<h2>{{singleRecipe.recipeTitle}} </h2>
+<p>{{singleRecipe.recipeTime}}</p>
+<p>{{singleRecipe.recipeDescription}}</p>
 
 <h2>Review this recipe!</h2>
 
 <div class="my-reviews-container">
-  <form action="/recipes/{{recipe._id}}/reviews" method="post">
+  <form action="/recipes/{{singleRecipe._id}}/reviews" method="post">
     <textarea name="reviewDescription" cols="50" rows="20">Review</textarea><br
     />
     <input type="number" name="reviewStars" />
