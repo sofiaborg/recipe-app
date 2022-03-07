@@ -6,6 +6,7 @@ const UserModel = require("../models/UserModel");
 
 const router = express.Router();
 
+//////hämta start-sidan och rendera alla recept + dess skapare//////
 router.get("/", async (req, res) => {
   const allRecipes = await RecipeModel.find().populate("createdByUser").lean();
   const users = await UserModel.find().lean();
@@ -13,13 +14,12 @@ router.get("/", async (req, res) => {
   res.render("home", { allRecipes, users });
 });
 
-//GET - create recipes
+//////skapa nytt recept//////
 router.get("/create", (req, res) => {
   res.render("recipes/recipes-create");
 });
 
 router.post("/create", async (req, res) => {
-  //hämtar id från inloggad user för att kunna visa vem som skapat respektive recept
   const { token } = req.cookies;
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
 
@@ -35,21 +35,23 @@ router.post("/create", async (req, res) => {
   res.redirect("/recipes/my-recipes");
 });
 
-//GET - my recipes
-router.get("/my-recipes", async (req, res) => {
-  const myRecipes = await RecipeModel.find().lean();
-
-  res.render("recipes/my-recipes-list", { myRecipes });
-});
-
+//////hämta ett single recipe och posta en review på receptet//////
 router.get("/:id", async (req, res) => {
-  const recipe = await RecipeModel.findById(req.params.id)
-    .populate("createdByUser")
-    .lean();
-  const review = await ReviewModel.findById(req.params.id).lean();
-
-  res.render("recipes/recipes-single", { recipe, review });
+  res.render("recipes/recipes-single");
 });
+
+router.post("/:id/reviews", async (req, res) => {
+  const recipeId = req.params.id;
+  const newReview = new ReviewModel({
+    reviewDescription: req.body.reviewDescription,
+    reviewStars: parseInt(req.body.reviewStars),
+  });
+  await newReview.save();
+
+  res.redirect("/recipes/" + recipeId);
+});
+
+/////////////////////////
 
 router.get("/:id/edit", async (req, res) => {
   const recipe = await RecipeModel.findById(req.params.id).lean();
@@ -79,16 +81,11 @@ router.post("/:id/delete", async (req, res) => {
   res.redirect("recipes/my-recipes");
 });
 
-router.post("/:id/reviews", async (req, res) => {
-  const recipeId = req.params.id;
-  const newReview = new ReviewModel({
-    reviewDescription: req.body.reviewDescription,
-    reviewStars: parseInt(req.body.reviewStars),
-    postBy: recipeId,
-  });
-  await newReview.save();
+//GET - my recipes
+router.get("/my-recipes", async (req, res) => {
+  const myRecipes = await RecipeModel.find().lean();
 
-  res.redirect("/recipes/" + recipeId);
+  res.render("recipes/my-recipes-list", { myRecipes });
 });
 
 //LOG OUT
