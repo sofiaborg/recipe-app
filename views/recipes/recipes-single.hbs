@@ -1,15 +1,13 @@
 <div class="each-recipes-container">
-  <h2>{{recipe.recipeTitle}} </h2>
-  <p>Cookingtime: {{recipe.recipeTime}} minutes</p>
-  <p>{{recipe.recipeDescription}}</p>
+  <h2>{{singleRecipe.recipeTitle}} </h2>
+  <p>Cookingtime:{{singleRecipe.recipeTime}}minutes</p>
+  <p>{{singleRecipe.recipeDescription}}</p>
 </div>
-
-<p>{{postBy.reviewDescription}}</p>
 
 <h2>Review this recipe</h2>
 
 <div class="my-reviews-container">
-  <form action="/recipes/{{recipe._id}}/reviews" method="post">
+  <form action="/recipes/{{singleRecipe._id}}/reviews" method="post">
     <textarea name="reviewDescription" cols="50" rows="20">Review</textarea><br
     />
     <div class="wrapper">
@@ -27,3 +25,9 @@
     <input type="submit" value="Save" />
   </form>
 </div>
+
+<h3>Reviews</h3>
+{{#each singleRecipe.reviews}}
+  <p>{{reviewDescription}}</p>
+  <p>{{reviewStars}}</p>
+{{/each}}

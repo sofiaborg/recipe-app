@@ -1,5 +1,5 @@
 const express = require("express");
-const fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
 const jwt = require("jsonwebtoken");
 const ReviewModel = require("../models/ReviewModel.js");
 const RecipeModel = require("../models/RecipeModel");
@@ -9,29 +9,28 @@ const { getUniqueFilename } = require("../utils.js");
 
 const router = express.Router();
 
-
+//////hämta start-sidan och rendera recept + dess skapare//////
 router.get("/", async (req, res) => {
-  const allRecipes = await RecipeModel.find().populate("createdByUser").lean();
-  const users = await UserModel.find().lean();
+  const recipesWithUsers = await RecipeModel.find()
+    .populate("createdByUser")
+    .lean();
 
-  res.render("home", { allRecipes, users });
+  res.render("home", { recipesWithUsers });
 });
 
-//GET - create recipes
+//////skapa nytt recept//////
 router.get("/create", (req, res) => {
   res.render("recipes/recipes-create");
 });
 
 router.post("/create", async (req, res) => {
-  //hämtar id från inloggad user för att kunna visa vem som skapat respektive recept
   const { token } = req.cookies;
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
 
   // håmtar fil från formuläret, filnamn och vart filen ska sparas
   const image = req.files.image;
   const filename = getUniqueFilename(image.name);
-  const uploadPath = './public/uploads/' + filename;
-
+  const uploadPath = "./public/uploads/" + filename;
 
   await image.mv(uploadPath);
 
@@ -40,32 +39,44 @@ router.post("/create", async (req, res) => {
     recipeTime: parseInt(req.body.recipeTime),
     recipeDescription: req.body.recipeDescription,
     imageUrl: "/uploads/" + filename,
-    createdByUser: tokenData.userId //hämtar userId från cookies!!
-    
+    createdByUser: tokenData.userId, //hämtar userId från cookies!!
   });
-    
+
   // await newRecipe.save();
   await newRecipe.save();
 
-  res.redirect("/recipes/my-recipes" );
+  res.redirect("/");
 });
 
-//GET - my recipes
-router.get("/my-recipes", async (req, res) => {
-  const myRecipes = await RecipeModel.find().lean();
-
-  res.render("recipes/my-recipes-list", { myRecipes });
-});
-
+//////hämta ett single recipe och posta en review på receptet//////
 router.get("/:id", async (req, res) => {
-  
-  const recipe = await RecipeModel.findById(req.params.id)
-    .populate("createdByUser")
+  const singleRecipe = await RecipeModel.findById(req.params.id)
+    .populate("reviews")
     .lean();
-  const review = await ReviewModel.findById(req.params.id).lean();
 
-  res.render("recipes/recipes-single", { recipe, review });
+  res.render("recipes/recipes-single", { singleRecipe });
 });
+
+router.post("/:id/reviews/", async (req, res) => {
+  const recipeId = req.params.id;
+  const newReview = new ReviewModel({
+    reviewDescription: req.body.reviewDescription,
+    reviewStars: parseInt(req.body.reviewStars),
+    reviewedRecipe: recipeId,
+  });
+
+  //hitta det recept vars ObectId matchar med id i URLen
+  let recipeWithReview = await RecipeModel.findOne({ _id: recipeId });
+
+  //gå in i reviewed-arrayn i RecipeModel och pusha in den skapade reviewns ObjectId
+  recipeWithReview.reviews.push(newReview._id);
+  await newReview.save();
+  await recipeWithReview.save();
+
+  res.redirect("/recipes/" + recipeId);
+});
+
+/////////////////////////
 
 router.get("/:id/edit", async (req, res) => {
   const recipe = await RecipeModel.findById(req.params.id).lean();
@@ -95,19 +106,11 @@ router.post("/:id/delete", async (req, res) => {
   res.redirect("/recipes/my-recipes");
 });
 
-router.post("/:id/reviews", async (req, res) => {
-  console.log(req.body);
-  const recipeId = req.params.id;
-  const newReview = new ReviewModel({
-    reviewDescription: req.body.reviewDescription,
-    reviewStars: parseInt(req.body.reviewStars),
+//GET - my recipes
+router.get("/my-recipes", async (req, res) => {
+  const myRecipes = await RecipeModel.find().lean();
 
-    //postBy: recipeId,
-  });
-  console.log("titta här", newReview);
-  await newReview.save();
-
-  res.redirect("/recipes/" + recipeId);
+  res.render("recipes/my-recipes-list", { myRecipes });
 });
 
 //LOG OUT

@@ -6,6 +6,7 @@ const RecipeSchema = new Schema({
   recipeDescription: { type: String, required: true },
   imageUrl: { type: String, required: true}, 
   createdByUser: { type: Schema.Types.ObjectId, ref: "users", required: true },
+  reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
 });
 
 const RecipeModel = model("recipes", RecipeSchema);
