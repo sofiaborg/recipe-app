@@ -3,11 +3,11 @@
 
 <div class="my-recipes-container">
 <form action="/recipes/create" method="post" enctype="multipart/form-data">
-    <input type="text" name="recipeTitle" placeholder="Title">
-    <input type="number" name="recipeTime" placeholder="Cooking time"><br><br>
-    <textarea name="recipeDescription" cols="50" rows="20">Recipe description</textarea><br>
+    <input type="text" name="recipeTitle" placeholder="Title"> 
+    <input type="number" name="recipeTime" placeholder="Cooking time - min"><br><br>
+    <textarea name="recipeDescription" cols="50" rows="20" placeholder="Recipe description"></textarea><br><br>
     <fieldset>
-        <label for="image">Racipe image</label><br>
+        <label for="image">Racipe image</label><br><br>
         <input type="file" name="image" id="image">
     </fieldset><br>
     <input type="submit" value="Save">

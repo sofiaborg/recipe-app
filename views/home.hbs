@@ -7,7 +7,7 @@
     {{#each recipesWithUsers}}
       <div class="each-recipe-container">
         <h3> <a href="/recipes/{{_id}}">{{recipeTitle}}</a> </h3>
-        <p>{{recipeTime}}</p>
+        <p>Cooking time: {{recipeTime}} min</p>
         <p>{{recipeDescription}}</p>
         <p>created by: {{createdByUser.username}}</p>
         <a href="/recipe/create"></a>
