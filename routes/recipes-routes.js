@@ -13,10 +13,22 @@ const router = express.Router();
 //////MINA RECEPT//////
 
 //////hämta ALLA MINA recept//////
-router.get("/my-recipes", async (req, res) => {
-  const myRecipes = await RecipeModel.find().lean();
+router.get("/my-recipes", async (req, res, next) => {
+  // const myRecipes = await RecipeModel.find().lean();
+  
+  const { token } = req.cookies;
+  const tokenData = jwt.decode(token, process.env.JWTSECRET);
+  user = tokenData.userId;
+  // const recipeId = req.params.id;
 
-  res.render("recipes/my-recipes-list", { myRecipes });
+  if (user){
+    const myRecipes = await RecipeModel.find({createdByUser: user}).lean();
+    res.render("recipes/my-recipes-list", { myRecipes });
+  }
+  else{
+      next();
+    }
+
 });
 
 //////uppdatera/radera MITT recept//////
