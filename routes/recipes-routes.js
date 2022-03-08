@@ -4,10 +4,49 @@ const jwt = require("jsonwebtoken");
 const ReviewModel = require("../models/ReviewModel.js");
 const RecipeModel = require("../models/RecipeModel");
 const UserModel = require("../models/UserModel");
+const { Router } = require("express");
 const { getUniqueFilename } = require("../utils.js");
 // const path = require('path');
 
 const router = express.Router();
+
+//////MINA RECEPT//////
+
+//////hämta ALLA MINA recept//////
+router.get("/my-recipes", async (req, res) => {
+  const myRecipes = await RecipeModel.find().lean();
+
+  res.render("recipes/my-recipes-list", { myRecipes });
+});
+
+//////uppdatera/radera MITT recept//////
+router.get("/:id/edit", async (req, res) => {
+  const recipe = await RecipeModel.findById(req.params.id).lean();
+
+  res.render("recipes/recipes-edit", recipe);
+});
+
+router.post("/:id/edit", async (req, res) => {
+  const updatedRecipe = {
+    recipeTitle: req.body.recipeTitle,
+    recipeTime: parseInt(req.body.recipeTime),
+    recipeDescription: req.body.recipeDescription,
+  };
+
+  await RecipeModel.updateOne({ _id: req.params.id }, { $set: updatedRecipe });
+  res.redirect("/recipes/my-recipes");
+});
+
+router.get("/:id/delete", async (req, res) => {
+  const recipe = await RecipeModel.findById(req.params.id).lean();
+  res.render("recipes/recipes-delete", recipe);
+});
+
+router.post("/:id/delete", async (req, res) => {
+  await RecipeModel.findById(req.params.id).deleteOne();
+
+  res.redirect("/recipes/my-recipes");
+});
 
 //////skapa nytt recept//////
 router.get("/create", (req, res) => {
@@ -64,44 +103,6 @@ router.post("/:id/reviews/", async (req, res) => {
   await recipeWithReview.save();
 
   res.redirect("/recipes/" + recipeId);
-});
-
-//////MINA RECEPT//////
-
-//////hämta ALLA MINA recept//////
-router.get("/my-recipes", async (req, res) => {
-  const myRecipes = await RecipeModel.find().lean();
-
-  res.render("recipes/my-recipes-list", { myRecipes });
-});
-
-//////uppdatera/radera MITT recept//////
-router.get("/:id/edit", async (req, res) => {
-  const recipe = await RecipeModel.findById(req.params.id).lean();
-
-  res.render("recipes/recipes-edit", recipe);
-});
-
-router.post("/:id/edit", async (req, res) => {
-  const updatedRecipe = {
-    recipeTitle: req.body.recipeTitle,
-    recipeTime: parseInt(req.body.recipeTime),
-    recipeDescription: req.body.recipeDescription,
-  };
-
-  await RecipeModel.updateOne({ _id: req.params.id }, { $set: updatedRecipe });
-  res.redirect("/recipes/my-recipes");
-});
-
-router.get("/:id/delete", async (req, res) => {
-  const recipe = await RecipeModel.findById(req.params.id).lean();
-  res.render("recipes/recipes-delete", recipe);
-});
-
-router.post("/:id/delete", async (req, res) => {
-  await RecipeModel.findById(req.params.id).deleteOne();
-
-  res.redirect("/recipes/my-recipes");
 });
 
 //LOG OUT
