@@ -6,12 +6,13 @@ const UserModel = require("../models/UserModel");
 
 const router = express.Router();
 
-//////hämta start-sidan och rendera alla recept + dess skapare//////
+//////hämta start-sidan och rendera recept + dess skapare//////
 router.get("/", async (req, res) => {
-  const allRecipes = await RecipeModel.find().populate("createdByUser").lean();
-  const users = await UserModel.find().lean();
+  const recipesWithUsers = await RecipeModel.find()
+    .populate("createdByUser")
+    .lean();
 
-  res.render("home", { allRecipes, users });
+  res.render("home", { recipesWithUsers });
 });
 
 //////skapa nytt recept//////
@@ -32,12 +33,14 @@ router.post("/create", async (req, res) => {
 
   await newRecipe.save();
 
-  res.redirect("/recipes/my-recipes");
+  res.redirect("/");
 });
 
 //////hämta ett single recipe och posta en review på receptet//////
 router.get("/:id", async (req, res) => {
-  const singleRecipe = await RecipeModel.findById(req.params.id).lean();
+  const singleRecipe = await RecipeModel.findById(req.params.id)
+    .populate("reviews")
+    .lean();
 
   res.render("recipes/recipes-single", { singleRecipe });
 });
@@ -47,16 +50,18 @@ router.post("/:id/reviews/", async (req, res) => {
   const newReview = new ReviewModel({
     reviewDescription: req.body.reviewDescription,
     reviewStars: parseInt(req.body.reviewStars),
-    reviewed: recipeId,
+    reviewedRecipe: recipeId,
   });
 
-  let reviewedRecipe = await RecipeModel.findOne({ _id: recipeId });
+  //hitta det recept vars ObectId matchar med id i URLen
+  let recipeWithReview = await RecipeModel.findOne({ _id: recipeId });
 
-  reviewedRecipe.reviews.push(newReview._id);
-
+  //gå in i reviewed-arrayn i RecipeModel och pusha in den skapade reviewns ObjectId
+  recipeWithReview.reviews.push(newReview._id);
   await newReview.save();
+  await recipeWithReview.save();
 
-  res.redirect("/recipes/" + id);
+  res.redirect("/recipes/" + recipeId);
 });
 
 /////////////////////////

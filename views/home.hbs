@@ -4,7 +4,7 @@
   <h2>All recipes</h2>
 
   <div class="all-recipes-container">
-    {{#each allRecipes}}
+    {{#each recipesWithUsers}}
       <div class="each-recipe-container">
         <h3> <a href="/recipes/{{_id}}">{{recipeTitle}}</a> </h3>
         <p>{{recipeTime}}</p>
