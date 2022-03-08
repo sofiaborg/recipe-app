@@ -5,13 +5,13 @@ const ReviewModel = require("../models/ReviewModel.js");
 
 const router = express.Router();
 
-//GET - my reviews
+//////visa MINA reviews//////
 router.get("/my-reviews", async (req, res) => {
   const myReviews = await ReviewModel.find().lean();
   res.render("reviews/my-reviews-list", { myReviews });
 });
 
-//GET - create reviews
+//////uppdatera/radera MINA reviews//////
 router.get("/:id/edit", async (req, res) => {
   const review = await ReviewModel.findById(req.params.id).lean();
 

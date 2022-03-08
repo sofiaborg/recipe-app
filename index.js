@@ -4,15 +4,14 @@ require("./mongoose");
 
 const express = require("express");
 const exphbs = require("express-handlebars");
-const fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
 const path = require("path");
 const bodyParser = require("body-parser");
-const RecipeModel = require("./models/RecipeModel.js");
-const ReviewModel = require("./models/ReviewModel.js");
-const { getUniqueFilename } = require('./utils.js')
+const RecipeModel = require("./models/RecipeModel");
+const { getUniqueFilename } = require("./utils.js");
 
 const forceAuthorize = require("./middlewares");
 
@@ -57,8 +56,13 @@ app.use((req, res, next) => {
 });
 
 /// ROUTES
-app.get("/", (req, res) => {
-  res.render("home");
+//////hämta start-sidan och rendera recept + dess skapare//////
+app.get("/", async (req, res) => {
+  const recipesWithUsers = await RecipeModel.find()
+    .populate("createdByUser")
+    .lean();
+
+  res.render("home", { recipesWithUsers });
 });
 
 app.use("/user", userRouter);
@@ -66,11 +70,11 @@ app.use("/recipes", forceAuthorize, recipesRouter);
 app.use("/reviews", forceAuthorize, reviewsRouter);
 
 // 404
-app.use('/', (req,res) => {
+app.use("/", (req, res) => {
   // vilken??
   // res.sendStatus(404).render('not-found')
-  res.render('not-found');
-})
+  res.render("not-found");
+});
 
 /////PORT///////
 app.listen(8000, () => {
