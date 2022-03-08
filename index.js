@@ -4,7 +4,7 @@ require("./mongoose");
 
 const express = require("express");
 const exphbs = require("express-handlebars");
-const fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 
@@ -12,7 +12,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const RecipeModel = require("./models/RecipeModel.js");
 const ReviewModel = require("./models/ReviewModel.js");
-const { getUniqueFilename } = require('./utils.js')
+const { getUniqueFilename } = require("./utils.js");
 
 const forceAuthorize = require("./middlewares");
 

@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const { ObjectId } = require("bson");
 
 //skapa en variabel som krypterar lösenordet
 const hashPassword = (password) => {
@@ -14,10 +15,26 @@ const comparePassword = (password, hash) => {
 
 function validateRecipe(recipe) {
   let valid = true;
+  valid = valid && recipe.recipeTitle.length > 0;
+  valid = valid && !isNaN(recipe.recipeTime);
+  valid = valid && recipe.recipeDescription.length > 0;
+  valid = valid && recipe.imageUrl;
+  console.log({ valid }, "slutresultatet");
 
-  valid = valid && recipe.recipeTitle;
-  valid = valid && recipe.recipeTime > 0;
-  valid = valid && recipe.recipeDescription;
+  return valid;
+}
+
+function validateReview(review) {
+  let valid = true;
+
+  try {
+    ObjectId(review.recipeId);
+  } catch {
+    valid = false;
+  }
+  valid =
+    valid && review.reviewDescription && review.reviewDescription.length > 0;
+  valid = valid && !isNaN(review.reviewTime);
 
   return valid;
 }
@@ -36,4 +53,5 @@ module.exports = {
   comparePassword,
   getUniqueFilename,
   validateRecipe,
+  validateReview,
 };

@@ -1,14 +1,14 @@
 const express = require("express");
-const fileUpload = require('express-fileupload');
+const fileUpload = require("express-fileupload");
 const jwt = require("jsonwebtoken");
 const ReviewModel = require("../models/ReviewModel.js");
 const RecipeModel = require("../models/RecipeModel");
 const UserModel = require("../models/UserModel");
-const { getUniqueFilename } = require("../utils.js");
+const { getUniqueFilename, validateRecipe } = require("../utils.js");
+
 // const path = require('path');
 
 const router = express.Router();
-
 
 router.get("/", async (req, res) => {
   const allRecipes = await RecipeModel.find().populate("createdByUser").lean();
@@ -30,8 +30,7 @@ router.post("/create", async (req, res) => {
   // håmtar fil från formuläret, filnamn och vart filen ska sparas
   const image = req.files.image;
   const filename = getUniqueFilename(image.name);
-  const uploadPath = './public/uploads/' + filename;
-
+  const uploadPath = "./public/uploads/" + filename;
 
   await image.mv(uploadPath);
 
@@ -40,14 +39,19 @@ router.post("/create", async (req, res) => {
     recipeTime: parseInt(req.body.recipeTime),
     recipeDescription: req.body.recipeDescription,
     imageUrl: "/uploads/" + filename,
-    createdByUser: tokenData.userId //hämtar userId från cookies!!
-    
+    createdByUser: tokenData.userId, //hämtar userId från cookies!!
   });
-    
-  // await newRecipe.save();
-  await newRecipe.save();
 
-  res.redirect("/recipes/my-recipes" );
+  if (validateRecipe(newRecipe)) {
+    await newRecipe.save();
+
+    res.redirect("/recipes/my-recipes");
+  } else {
+    res.render("recipes/recipes-create", {
+      error: "You did not enter all fields correctly",
+      ...newRecipe,
+    });
+  }
 });
 
 //GET - my recipes
@@ -95,7 +99,6 @@ router.post("/:id/delete", async (req, res) => {
 });
 
 router.post("/:id/reviews", async (req, res) => {
-  console.log(req.body);
   const recipeId = req.params.id;
   const newReview = new ReviewModel({
     reviewDescription: req.body.reviewDescription,
@@ -103,7 +106,7 @@ router.post("/:id/reviews", async (req, res) => {
 
     //postBy: recipeId,
   });
-  console.log("titta här", newReview);
+
   await newReview.save();
 
   res.redirect("/recipes/" + recipeId);

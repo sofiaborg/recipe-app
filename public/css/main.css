@@ -54,6 +54,18 @@
   color: #ffc107;
 }
 
+.login-form {
+  background-size: auto;
+  background-position: left center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
