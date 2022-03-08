@@ -9,6 +9,11 @@ const reviewSchema = new Schema({
     ref: "recipes",
     required: true,
   },
+  reviewedByUser: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+    required: true,
+  },
 });
 
 const ReviewModel = model("reviews", reviewSchema);

@@ -87,11 +87,15 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/:id/reviews/", async (req, res) => {
+  const { token } = req.cookies;
+  const tokenData = jwt.decode(token, process.env.JWTSECRET);
   const recipeId = req.params.id;
+
   const newReview = new ReviewModel({
     reviewDescription: req.body.reviewDescription,
     reviewStars: parseInt(req.body.reviewStars),
     reviewedRecipe: recipeId,
+    reviewedByUser: tokenData.userId,
   });
 
   //hitta det recept vars ObectId matchar med id i URLen
