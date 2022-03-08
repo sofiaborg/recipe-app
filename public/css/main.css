@@ -218,6 +218,9 @@ body .header {
 body img {
   width: 160px;
 }
+body .not-found-container {
+  text-align: center;
+}
 
 .menu-desktop {
   visibility: hidden;
