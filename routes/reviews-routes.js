@@ -1,14 +1,26 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { Router } = require("express");
+const jwt = require("jsonwebtoken");
 const ReviewModel = require("../models/ReviewModel.js");
 
 const router = express.Router();
 
 //////visa MINA reviews//////
-router.get("/my-reviews", async (req, res) => {
-  const myReviews = await ReviewModel.find().lean();
-  res.render("reviews/my-reviews-list", { myReviews });
+router.get("/my-reviews", async (req, res, next) => {
+  const { token } = req.cookies;
+  const tokenData = jwt.decode(token, process.env.JWTSECRET);
+  user = tokenData.userId;
+
+  //hitta receptets ObjectId//
+
+  if (user) {
+    const myReviews = await ReviewModel.find({ reviewedByUser: user }).lean();
+
+    res.render("reviews/my-reviews-list", { myReviews });
+  } else {
+    next();
+  }
 });
 
 //////uppdatera/radera MINA reviews//////
