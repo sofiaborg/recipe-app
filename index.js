@@ -10,7 +10,8 @@ const cookieParser = require("cookie-parser");
 
 const path = require("path");
 const bodyParser = require("body-parser");
-const RecipeModel = require("./models/RecipeModel");
+const RecipeModel = require("./models/RecipeModel.js");
+const ReviewModel = require("./models/ReviewModel.js");
 const { getUniqueFilename } = require("./utils.js");
 
 const forceAuthorize = require("./middlewares");
@@ -26,7 +27,7 @@ app.engine(
   "hbs",
   exphbs.engine({
     defaultLayout: "main",
-    extname: ".hbs", 
+    extname: ".hbs",
     // helpers: showStars = (stars) => {
     //   let output = "";
     //   for(let i = 0; i < stars; i++) {

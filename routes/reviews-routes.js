@@ -29,11 +29,6 @@ router.get("/:id/edit", async (req, res) => {
 });
 
 router.post("/:id/edit", async (req, res) => {
-  // const updatedReview =  ReviewModel{
-  //   reviewDescription: req.body.reviewDescription,
-  //   reviewStars: parseInt(req.body.reviewStars),
-  // };
-
   const review = await ReviewModel.findById(req.params.id);
 
   review.reviewDescription = req.body.reviewDescription;

@@ -17,13 +17,15 @@
 
 {{else}}
 
-  <h2>Log in to your account</h2>
+  <div class="login-wrapper">
+    <h2>Log in to your account</h2>
 
-  <form action="/user/login" method="post">
-    <input type="text" name="username" placeholder="Username" />
-    <input type="password" name="password" placeholder="Password" />
-    <input type="submit" value="Log in" />
-  </form>
-  <a href="/user/register">Register account</a>
+    <form action="/user/login" method="post" class="login-form">
+      <input type="text" name="username" placeholder="Username" />
+      <input type="password" name="password" placeholder="Password" />
+      <input type="submit" value="Log in" />
+    </form>
+    <a href="/user/register">Register account</a>
+  </div>
 
 {{/if}}

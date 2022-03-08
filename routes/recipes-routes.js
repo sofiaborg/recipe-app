@@ -6,8 +6,8 @@ const RecipeModel = require("../models/RecipeModel");
 const UserModel = require("../models/UserModel");
 const { Router } = require("express");
 const { getUniqueFilename } = require("../utils.js");
-// const path = require('path');
 
+// const path = require('path');
 const router = express.Router();
 
 //////MINA RECEPT//////
@@ -15,23 +15,22 @@ const router = express.Router();
 //////hämta ALLA MINA recept//////
 router.get("/my-recipes", async (req, res, next) => {
   // const myRecipes = await RecipeModel.find().lean();
-  
+
   const { token } = req.cookies;
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
   user = tokenData.userId;
   // const recipeId = req.params.id;
 
-  if (user){
-    const myRecipes = await RecipeModel.find({createdByUser: user}).lean();
+  if (user) {
+    const myRecipes = await RecipeModel.find({ createdByUser: user }).lean();
     res.render("recipes/my-recipes-list", { myRecipes });
+  } else {
+    next();
   }
-  else{
-      next();
-    }
-
 });
 
 //////uppdatera/radera MITT recept//////
+
 router.get("/:id/edit", async (req, res) => {
   const recipe = await RecipeModel.findById(req.params.id).lean();
 
@@ -83,10 +82,16 @@ router.post("/create", async (req, res) => {
     imageUrl: "/uploads/" + filename,
     createdByUser: tokenData.userId, //hämtar userId från cookies!!
   });
+  if (validateRecipe(newRecipe)) {
+    await newRecipe.save();
 
-  await newRecipe.save();
-
-  res.redirect("/");
+    res.redirect("/recipes/my-recipes");
+  } else {
+    res.render("recipes/recipes-create", {
+      error: "You did not enter all fields correctly",
+      ...newRecipe,
+    });
+  }
 });
 
 //////hämta ett single recipe och posta en review på receptet//////
@@ -122,6 +127,7 @@ router.post("/:id/reviews/", async (req, res) => {
 });
 
 //LOG OUT
+
 router.post("/log-out", (req, res) => {
   // sätt token(cookie) till en tom sträng och ta bort den direkt
   // res.cookie("token", "", {maxAge:0})
