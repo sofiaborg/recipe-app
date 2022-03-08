@@ -58,7 +58,7 @@ router.post("/create", async (req, res) => {
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
 
   // håmtar fil från formuläret, filnamn och vart filen ska sparas
-  const image = req.files.image;
+  const image = req.files.image; //gör en if-sats. denna ska bara köras om req.files är satt!
   const filename = getUniqueFilename(image.name);
   const uploadPath = "./public/uploads/" + filename;
 
