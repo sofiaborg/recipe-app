@@ -12,8 +12,6 @@ router.get("/my-reviews", async (req, res, next) => {
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
   user = tokenData.userId;
 
-  //hitta receptets ObjectId//
-
   if (user) {
     const myReviews = await ReviewModel.find({ reviewedByUser: user }).lean();
 
