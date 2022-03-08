@@ -9,15 +9,6 @@ const { getUniqueFilename } = require("../utils.js");
 
 const router = express.Router();
 
-//////hämta start-sidan och rendera recept + dess skapare//////
-router.get("/", async (req, res) => {
-  const recipesWithUsers = await RecipeModel.find()
-    .populate("createdByUser")
-    .lean();
-
-  res.render("home", { recipesWithUsers });
-});
-
 //////skapa nytt recept//////
 router.get("/create", (req, res) => {
   res.render("recipes/recipes-create");
@@ -42,7 +33,6 @@ router.post("/create", async (req, res) => {
     createdByUser: tokenData.userId, //hämtar userId från cookies!!
   });
 
-  // await newRecipe.save();
   await newRecipe.save();
 
   res.redirect("/");
@@ -76,8 +66,16 @@ router.post("/:id/reviews/", async (req, res) => {
   res.redirect("/recipes/" + recipeId);
 });
 
-/////////////////////////
+//////MINA RECEPT//////
 
+//////hämta ALLA MINA recept//////
+router.get("/my-recipes", async (req, res) => {
+  const myRecipes = await RecipeModel.find().lean();
+
+  res.render("recipes/my-recipes-list", { myRecipes });
+});
+
+//////uppdatera/radera MITT recept//////
 router.get("/:id/edit", async (req, res) => {
   const recipe = await RecipeModel.findById(req.params.id).lean();
 
@@ -104,13 +102,6 @@ router.post("/:id/delete", async (req, res) => {
   await RecipeModel.findById(req.params.id).deleteOne();
 
   res.redirect("/recipes/my-recipes");
-});
-
-//GET - my recipes
-router.get("/my-recipes", async (req, res) => {
-  const myRecipes = await RecipeModel.find().lean();
-
-  res.render("recipes/my-recipes-list", { myRecipes });
 });
 
 //LOG OUT
