@@ -4,9 +4,12 @@
 
   {{#each myReviews}}
     <div class="each-reviews-container">
+      <h4><a
+          href="/recipes/{{reviewedRecipe._id}}"
+        >{{reviewedRecipe.recipeTitle}}</a></h4>
       <p>{{reviewDescription}}</p>
       <p>{{reviewDate}}</p>
-{{!-- {{{showStars reviewStars}}} --}}
+      {{!-- {{{showStars reviewStars}}} --}}
       <br />
       <a href="/reviews/{{_id}}/edit">Edit</a>
       <a href="/reviews/{{_id}}/delete">Delete</a>

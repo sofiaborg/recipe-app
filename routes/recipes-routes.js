@@ -15,27 +15,35 @@ const router = express.Router();
 //////hämta ALLA MINA recept//////
 router.get("/my-recipes", async (req, res, next) => {
   // const myRecipes = await RecipeModel.find().lean();
-  
+
   const { token } = req.cookies;
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
   user = tokenData.userId;
   // const recipeId = req.params.id;
 
-  if (user){
-    const myRecipes = await RecipeModel.find({createdByUser: user}).lean();
+  if (user) {
+    const myRecipes = await RecipeModel.find({ createdByUser: user }).lean();
     res.render("recipes/my-recipes-list", { myRecipes });
+  } else {
+    next();
   }
-  else{
-      next();
-    }
-
 });
 
 //////uppdatera/radera MITT recept//////
 router.get("/:id/edit", async (req, res) => {
-  const recipe = await RecipeModel.findById(req.params.id).lean();
+  const cookieId = res.locals.userId; // ID på den som är inloggad
+  const recepieId = req.params.id; // receptet ID
 
-  res.render("recipes/recipes-edit", recipe);
+  let findUser = await RecipeModel.findOne({ _id: recepieId });
+  console.log(findUser.createdByUser);
+  const correctUser = findUser.createdByUser.toString();
+
+  if (cookieId === correctUser) {
+    const recipe = await RecipeModel.find({ createdByUser: user }).lean();
+    res.render("recipes/recipes-edit", recipe);
+  } else {
+    res.render("not-found.hbs");
+  }
 });
 
 router.post("/:id/edit", async (req, res) => {
