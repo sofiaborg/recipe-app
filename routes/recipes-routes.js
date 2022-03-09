@@ -70,7 +70,8 @@ router.post("/create", async (req, res) => {
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
 
   // håmtar fil från formuläret, filnamn och vart filen ska sparas
-  const image = req.files.image; //gör en if-sats. denna ska bara köras om req.files är satt!
+if (req.files && req.files.im){
+  const image = req.files.image;//gör en if-sats. denna ska bara köras om req.files är satt!
   const filename = getUniqueFilename(image.name);
   const uploadPath = "./public/uploads/" + filename;
 
@@ -87,6 +88,12 @@ router.post("/create", async (req, res) => {
   await newRecipe.save();
 
   res.redirect("/");
+}
+else {
+  res.render("recipes/recipes-create", {
+    error: "You have to upload a picture",
+  });
+}
 });
 
 //////hämta ett single recipe och posta en review på receptet//////
@@ -102,6 +109,7 @@ router.post("/:id/reviews/", async (req, res) => {
   const { token } = req.cookies;
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
   const recipeId = req.params.id;
+  
 
   const newReview = new ReviewModel({
     reviewDescription: req.body.reviewDescription,
