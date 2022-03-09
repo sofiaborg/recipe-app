@@ -7,18 +7,16 @@ const ReviewModel = require("../models/ReviewModel.js");
 const router = express.Router();
 
 //////visa MINA reviews//////
-router.get("/my-reviews", async (req, res, next) => {
+router.get("/my-reviews", async (req, res) => {
   const { token } = req.cookies;
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
   user = tokenData.userId;
 
-  if (user) {
-    const myReviews = await ReviewModel.find({ reviewedByUser: user }).lean();
+  const myReviews = await ReviewModel.find({ reviewedByUser: user })
+    .populate("reviewedRecipe")
+    .lean();
 
-    res.render("reviews/my-reviews-list", { myReviews });
-  } else {
-    next();
-  }
+  res.render("reviews/my-reviews-list", { myReviews });
 });
 
 //////uppdatera/radera MINA reviews//////
