@@ -194,6 +194,7 @@ body header .menu {
   align-items: center;
 }
 body header .menu .profile-picture {
+  background: url(/images/alison-wang-mou.jpg);
   width: 150px;
   height: 150px;
   background-color: rgba(224, 219, 219, 0.384);
@@ -435,6 +436,7 @@ body h2 {
     color: #272d2d;
   }
   body .header .profile-picture {
+    background: url(/images/alison-wang-mou.jpg);
     width: 150px;
     height: 150px;
     background-color: rgba(224, 219, 219, 0.384);
