@@ -55,6 +55,109 @@
   color: #ffc107;
 }
 
+.login-wrapper {
+  /*   background: url("/images/Foodtable.jpg") no-repeat;
+  background-size: auto;
+  background-position: left center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.login-wrapper h2 {
+  margin-top: 40px;
+}
+.login-wrapper img {
+  max-width: 100%;
+  margin-top: 10px;
+}
+.login-wrapper .login-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+.login-wrapper .login-form input:focus {
+  outline: none;
+}
+.login-wrapper .login-form input[type=text],
+.login-wrapper .login-form [type=password] {
+  border: none;
+  border-bottom: 2px solid black;
+}
+.login-wrapper .login-form input[type=submit] {
+  background-color: #f8a203;
+  border-color: black;
+  border-style: none;
+  border-radius: 0.2em;
+  padding: 5px;
+}
+.login-wrapper .login-form input[type=submit]:hover {
+  background-color: #e79b0e;
+}
+.login-wrapper a:link {
+  text-decoration: none;
+}
+.login-wrapper a:visited {
+  color: black;
+  text-decoration: none;
+}
+.login-wrapper a:hover {
+  text-decoration: underline;
+}
+.login-wrapper a:active {
+  text-decoration: underline;
+}
+
+.register-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.register-wrapper h2 {
+  margin-top: 40px;
+}
+.register-wrapper img {
+  max-width: 100%;
+  margin-top: 10px;
+}
+.register-wrapper .register-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+.register-wrapper .register-form input:focus {
+  outline: none;
+}
+.register-wrapper .register-form input[type=text],
+.register-wrapper .register-form [type=password] {
+  border: none;
+  border-bottom: 2px solid black;
+}
+.register-wrapper .register-form input[type=submit] {
+  background-color: #f8a203;
+  border-color: black;
+  border-style: none;
+  border-radius: 0.2em;
+  padding: 5px;
+}
+.register-wrapper .register-form input[type=submit]:hover {
+  background-color: #e79b0e;
+}
+.register-wrapper a:link {
+  text-decoration: none;
+}
+.register-wrapper a:visited {
+  color: black;
+  text-decoration: none;
+}
+.register-wrapper a:hover {
+  text-decoration: underline;
+}
+.register-wrapper a:active {
+  text-decoration: underline;
+}
+
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
