@@ -4,7 +4,7 @@
 <div class="my-recipes-container">
 <form action="/recipes/create" method="post" enctype="multipart/form-data">
     <input type="text" name="recipeTitle" placeholder="Title"> 
-    <input type="number" name="recipeTime" placeholder="Cooking time - min"><br><br>
+    <input type="number" min="0" name="recipeTime" placeholder="Cooking time - min"><br><br>
     <textarea name="recipeDescription" cols="50" rows="20" placeholder="Recipe description"></textarea><br><br>
     <fieldset>
         <label for="image">Racipe image</label><br><br>
