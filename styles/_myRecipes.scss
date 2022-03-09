@@ -1,6 +1,13 @@
 @mixin myRecipes {
 
 // MY-RECIPES-HBS
+.wrapper-mobile{
+margin-top: 0px;
+h2{
+    margin-bottom: 80px;
+}
+}
+
 .my-recipes-container {
     display: flex;
     flex-direction: row;
@@ -61,7 +68,7 @@
 @media screen and(min-width: 1024px) {
     .each-recipes-container {
         width: 250px;
-        height: 280px;
+        height: 270px;
         overflow: hidden;
         .img-container{
             width: 250px;

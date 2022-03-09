@@ -216,6 +216,12 @@ body .header {
     display: block;
   }
 }
+body .wrapper-mobile {
+  margin-top: 0px;
+}
+body .wrapper-mobile h2 {
+  margin-bottom: 80px;
+}
 body .my-recipes-container {
   display: flex;
   flex-direction: row;
@@ -269,7 +275,7 @@ body .my-recipes-container a:hover {
 @media screen and (min-width: 1024px) {
   body .each-recipes-container {
     width: 250px;
-    height: 280px;
+    height: 270px;
     overflow: hidden;
   }
   body .each-recipes-container .img-container {

@@ -5,7 +5,7 @@ const ReviewModel = require("../models/ReviewModel.js");
 const RecipeModel = require("../models/RecipeModel");
 const UserModel = require("../models/UserModel");
 const { Router } = require("express");
-const { getUniqueFilename } = require("../utils.js");
+const { getUniqueFilename, validateRecipe } = require("../utils.js");
 // const path = require('path');
 
 const router = express.Router();
@@ -85,9 +85,19 @@ if (req.files && req.files.image){
     createdByUser: tokenData.userId, //hämtar userId från cookies!!
   });
 
-  await newRecipe.save();
+  if(validateRecipe(newRecipe)){
+    await newRecipe.save();
 
-  res.redirect("/");
+    res.redirect('/recipes/my-recipes');
+  }else{
+    res.render('recipes/recipes-create' , {
+      error: 'You did not enter all fields correctly',
+      ...newRecipe
+    })
+  }
+  // await newRecipe.save();
+
+  // res.redirect("/");
 }
 else {
   res.render("recipes/recipes-create", {
