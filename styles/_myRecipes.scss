@@ -1,0 +1,78 @@
+@mixin myRecipes {
+
+// MY-RECIPES-HBS
+.my-recipes-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 25px;
+  
+  .each-recipes-container {
+    width: 250px;
+    height: 270px;
+    overflow: hidden;
+    border-radius: 25px;
+    background-color: rgba(240, 239, 239, 0.952);
+    .img-container{
+        width: 250px;
+        height: 150px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        .my-img{
+        max-width: 250px;
+        border-radius: 25px 25px 0px 0px;
+        display: block;
+        overflow: hidden;   
+         }
+     }
+    .recipe-title{
+        padding:0px 20px;
+        margin: 0;
+    }
+    .cooking-time{
+        padding:0px 20px
+    }
+    a{
+        text-decoration: none;
+        color:black;
+        font-size: 1.2rem;
+    }
+    .crud{
+        padding:0px 20px;
+       
+        a{
+           font-size: 12px;  
+        }
+    }
+    } 
+    a:hover{
+        cursor: pointer;
+        color:rgba(0, 0, 0, 0.692);
+    }
+ }
+
+ @media screen and(min-width: 768px) {
+
+}
+
+@media screen and(min-width: 1024px) {
+    .each-recipes-container {
+        width: 250px;
+        height: 280px;
+        overflow: hidden;
+        .img-container{
+            width: 250px;
+            height: 150px;
+            overflow: hidden;
+            .my-img{
+            max-width: 250px;
+            
+        }
+    }
+}
+}
+
+}

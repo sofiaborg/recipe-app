@@ -1,6 +1,7 @@
 @import "hamburger";
 @import "menudesktop";
 @import "stars";
+@import "myRecipes";
 
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -9,29 +10,32 @@
 
 body {
   @include hamburger;
+  @include myRecipes;
   margin: 0 auto;
-  img {
-    width: 160px;
-  }
-}
+  // img {
+  //   width: 160px;
+  // }
 
+h2 {
+  text-align: center;
+}}
 .menu-desktop {
   visibility: hidden;
 }
 
-// MY-RECIPES-HBS
-.my-recipes-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-}
+// // MY-RECIPES-HBS
+// .my-recipes-container {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 25px;
+// }
 
-.each-recipes-container {
-  padding: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.418);
-}
+// .each-recipes-container {
+//   padding: 25px;
+//   border: 1px solid rgba(0, 0, 0, 0.418);
+// }
 
 .my-reviews-container {
   display: flex;

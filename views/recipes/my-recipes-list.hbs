@@ -3,12 +3,16 @@
 <div class="my-recipes-container">
   {{#each myRecipes}}
     <div class="each-recipes-container">
-      <img src="{{imageUrl}}" alt="{{name}}" /><br>
-      <h3> <a href="/recipes/{{_id}}">{{recipeTitle}}</a></h3>
-      <p>Cookingtime: {{recipeTime}} minutes</p>
-      <p>{{recipeDescription}}</p>
+      <div class="img-container">
+      <img class="my-img" src="{{imageUrl}}" alt="{{name}}" />
+      </div><br>
+      <h3 class="recipe-title"> <a  href="/recipes/{{_id}}">{{recipeTitle}}</a></h3>
+      <p class="cooking-time">Cookingtime: {{recipeTime}} minutes</p>
+      {{!-- <p>{{recipeDescription}}</p> --}}
+ <div class="crud">
       <a href="/recipes/{{_id}}/edit">Edit</a>
       <a href="/recipes/{{_id}}/delete">Delete</a>
+</div>
     </div>
   {{/each}}
 </div>
