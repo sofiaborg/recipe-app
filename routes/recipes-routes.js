@@ -5,7 +5,11 @@ const ReviewModel = require("../models/ReviewModel.js");
 const RecipeModel = require("../models/RecipeModel");
 const UserModel = require("../models/UserModel");
 const { Router } = require("express");
-const { getUniqueFilename } = require("../utils.js");
+const {
+  getUniqueFilename,
+  validateRecipe,
+  validateReview,
+} = require("../utils.js");
 
 // const path = require('path');
 const router = express.Router();
@@ -115,15 +119,22 @@ router.post("/:id/reviews/", async (req, res) => {
     reviewedByUser: tokenData.userId,
   });
 
-  //hitta det recept vars ObectId matchar med id i URLen
-  let recipeWithReview = await RecipeModel.findOne({ _id: recipeId });
+  if (validateReview(newReview)) {
+    //hitta det recept vars ObectId matchar med id i URLen
+    let recipeWithReview = await RecipeModel.findOne({ _id: recipeId });
 
-  //gå in i reviewed-arrayn i RecipeModel och pusha in den skapade reviewns ObjectId
-  recipeWithReview.reviews.push(newReview._id);
-  await newReview.save();
-  await recipeWithReview.save();
+    //gå in i reviewed-arrayn i RecipeModel och pusha in den skapade reviewns ObjectId
+    recipeWithReview.reviews.push(newReview._id);
+    await newReview.save();
+    await recipeWithReview.save();
 
-  res.redirect("/recipes/" + recipeId);
+    res.redirect("/recipes/" + recipeId);
+  } else {
+    res.render("recipes/recipes-single", {
+      error: "You have not entered all fields, please try again.",
+      ...newReview,
+    });
+  }
 });
 
 //LOG OUT

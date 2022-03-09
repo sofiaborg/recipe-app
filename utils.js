@@ -32,9 +32,8 @@ function validateReview(review) {
   } catch {
     valid = false;
   }
-  valid =
-    valid && review.reviewDescription && review.reviewDescription.length > 0;
-  valid = valid && !isNaN(review.reviewTime);
+  valid = valid && review.reviewDescription.length > 0;
+  valid = valid && !isNaN(review.reviewStars);
 
   return valid;
 }
