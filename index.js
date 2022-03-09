@@ -26,14 +26,16 @@ app.engine(
   "hbs",
   exphbs.engine({
     defaultLayout: "main",
-    extname: ".hbs", 
-    // helpers: showStars = (stars) => {
-    //   let output = "";
-    //   for(let i = 0; i < stars; i++) {
-    //     output += "\f005";
-    //   }
-    //   return output;
-    // }
+    extname: ".hbs",
+    helpers: {
+      showStars: (stars) => {
+        let output = "";
+        for (let i = 0; i < stars; i++) {
+          output += "⭐";
+        }
+        return output;
+      },
+    },
   })
 );
 
