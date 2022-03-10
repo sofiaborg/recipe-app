@@ -1,0 +1,60 @@
+.login-wrapper {
+  /*   background: url("/images/Foodtable.jpg") no-repeat;
+  background-size: auto;
+  background-position: left center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    margin-top: 40px;
+  }
+
+  img {
+    max-width: 100%;
+    margin-top: 10px;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+
+    input:focus {
+      outline: none;
+    }
+
+    input[type="text"],
+    [type="password"] {
+      border: none;
+      border-bottom: 2px solid black;
+    }
+    input[type="submit"] {
+      background-color: rgb(248, 162, 3);
+      border-color: black;
+      border-style: none;
+      border-radius: 0.2em;
+      padding: 5px;
+    }
+    input[type="submit"]:hover {
+      background-color: rgb(231, 155, 14);
+    }
+  }
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: black;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a:active {
+    text-decoration: underline;
+  }
+}

@@ -3,6 +3,9 @@
 <div class="my-reviews-container">
   {{#each myReviews}}
     <div class="each-reviews-container">
+      <h4><a
+          href="/recipes/{{reviewedRecipe._id}}"
+        >{{reviewedRecipe.recipeTitle}}</a></h4>
       <p>{{reviewDescription}}</p>
       <p>{{reviewDate}}</p>
       {{{showStars reviewStars}}}
