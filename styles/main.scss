@@ -4,7 +4,7 @@
 @import "myRecipes";
 @import "loginpage";
 @import "registerpage";
-
+@import "myReviews";
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -13,23 +13,14 @@
 body {
   @include hamburger;
   @include myRecipes;
+  @include myReviews;
   margin: 0 auto;
-<<<<<<< HEAD
   h2 {
     text-align: center;
   }
   .four-people-text{
     text-align: center;
   }
-=======
-  // img {
-  //   width: 160px;
-  // }
-
-  h2 {
-    text-align: center;
-  }
->>>>>>> 8342b29da94ac8bab1e2002dfb5f0566700fce53
 }
 .menu-desktop {
   visibility: hidden;
@@ -49,18 +40,18 @@ body {
 //   border: 1px solid rgba(0, 0, 0, 0.418);
 // }
 
-.my-reviews-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-}
+// .my-reviews-container {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 25px;
+// }
 
-.each-reviews-container {
-  padding: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.418);
-}
+// .each-reviews-container {
+//   padding: 25px;
+//   border: 1px solid rgba(0, 0, 0, 0.418);
+// }
 
 // Create recipe
 .create-title{

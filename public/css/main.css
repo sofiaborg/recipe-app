@@ -391,6 +391,37 @@ body .my-recipes-container a:hover {
     max-width: 250px;
   }
 }
+body .my-reviews-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 25px;
+}
+body .my-reviews-container .each-reviews-container {
+  width: 250px;
+  height: 250px;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 25px;
+  background-color: rgba(240, 239, 239, 0.952);
+}
+body a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+}
+body .crud {
+  margin-top: 10px;
+}
+body .crud a {
+  font-size: 12px;
+}
+body a:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.692);
+}
 body h2 {
   text-align: center;
 }
@@ -400,19 +431,6 @@ body .four-people-text {
 
 .menu-desktop {
   visibility: hidden;
-}
-
-.my-reviews-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-}
-
-.each-reviews-container {
-  padding: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.418);
 }
 
 .create-title {
