@@ -386,6 +386,9 @@ body .my-recipes-container a:hover {
   cursor: pointer;
   color: rgba(0, 0, 0, 0.692);
 }
+body .my-recipes-container .created-by {
+  padding: 0px 22px;
+}
 @media screen and (min-width: 1024px) {
   body .each-recipes-container {
     width: 250px;
