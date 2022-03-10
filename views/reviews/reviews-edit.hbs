@@ -1,7 +1,12 @@
 <h2>Edit review</h2>
 
-<form action="/reviews/{{_id}}/edit" method="post">
-  <input type="text" name="reviewDescription" value="{{reviewDescription}}" />
+<form action="/reviews/{{_id}}/edit" method="post" class="review-form">
+  <textarea
+    name="reviewDescription"
+    cols="30"
+    rows="10"
+  >{{reviewDescription}}</textarea>
+
   <div class="wrapper">
     <input type="radio" id="st1" value="5" name="reviewStars" />
     <label for="st1"></label>

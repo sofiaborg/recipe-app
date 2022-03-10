@@ -8,9 +8,6 @@
   display: inline-block;
   border: none;
   font-size: 14px;
-  margin: 50px auto;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .wrapper input {
@@ -168,6 +165,27 @@
     width: 300px;
   }
 }
+.review-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+}
+.review-form input[type=submit] {
+  background-color: #f8a203;
+  border-color: black;
+  border-style: none;
+  border-radius: 0.2em;
+  padding: 5px;
+}
+.review-form input[type=submit]:hover {
+  background-color: #e79b0e;
+}
+.review-form textarea {
+  outline: none;
+}
+
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
