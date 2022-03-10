@@ -291,6 +291,9 @@ body .my-recipes-container a:hover {
 body h2 {
   text-align: center;
 }
+body .four-people-text {
+  text-align: center;
+}
 
 .menu-desktop {
   visibility: hidden;
@@ -307,6 +310,14 @@ body h2 {
 .each-reviews-container {
   padding: 25px;
   border: 1px solid rgba(0, 0, 0, 0.418);
+}
+
+.create-title {
+  width: 210px;
+}
+
+.create-minutes {
+  width: 140px;
 }
 
 @media screen and (min-width: 1024px) {
