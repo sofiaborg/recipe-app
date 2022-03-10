@@ -186,6 +186,79 @@
   outline: none;
 }
 
+.single-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.single-wrapper h3 {
+  text-align: left;
+}
+.single-wrapper .single-recipe-container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  overflow: hidden;
+  border-radius: 25px;
+  background-color: rgba(240, 239, 239, 0.952);
+  padding: 20px;
+  margin-top: 20px;
+}
+.single-wrapper .single-recipe-container .single {
+  margin-bottom: 5px;
+  text-align: left;
+}
+.single-wrapper .review-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+}
+.single-wrapper .review-wrapper input[type=submit] {
+  background-color: #f8a203;
+  border-color: black;
+  border-style: none;
+  border-radius: 0.2em;
+  padding: 5px;
+}
+.single-wrapper .review-wrapper input[type=submit]:hover {
+  background-color: #e79b0e;
+}
+.single-wrapper .review-wrapper textarea {
+  outline: none;
+  width: 80vw;
+  height: 200px;
+}
+.single-wrapper .flex-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+.single-wrapper .flex-wrapper .all-reviews-wrapper {
+  width: 80vw;
+  height: auto;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 25px;
+  background-color: rgba(240, 239, 239, 0.952);
+}
+
+@media screen and (min-width: 768px) {
+  .single-recipe-container {
+    max-width: 700px;
+  }
+
+  .review-wrapper textarea {
+    max-width: 735px;
+  }
+
+  .all-reviews-wrapper {
+    max-width: 700px;
+  }
+}
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
