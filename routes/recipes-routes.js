@@ -33,6 +33,7 @@ router.get("/my-recipes", async (req, res, next) => {
 router.get("/:id/edit", async (req, res) => {
   const cookieId = res.locals.userId; // ID på den som är inloggad
   const recepieId = req.params.id; // receptet ID
+  const user = res.locals.userId;
 
   let findUser = await RecipeModel.findOne({ _id: recepieId });
   console.log(findUser.createdByUser);
@@ -78,40 +79,39 @@ router.post("/create", async (req, res) => {
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
 
   // håmtar fil från formuläret, filnamn och vart filen ska sparas
-if (req.files && req.files.image){
-  const image = req.files.image;//gör en if-sats. denna ska bara köras om req.files är satt!
-  const filename = getUniqueFilename(image.name);
-  const uploadPath = "./public/uploads/" + filename;
+  if (req.files && req.files.image) {
+    const image = req.files.image; //gör en if-sats. denna ska bara köras om req.files är satt!
+    const filename = getUniqueFilename(image.name);
+    const uploadPath = "./public/uploads/" + filename;
 
-  await image.mv(uploadPath);
+    await image.mv(uploadPath);
 
-  const newRecipe = new RecipeModel({
-    recipeTitle: req.body.recipeTitle,
-    recipeTime: parseInt(req.body.recipeTime),
-    recipeDescription: req.body.recipeDescription,
-    imageUrl: "/uploads/" + filename,
-    createdByUser: tokenData.userId, //hämtar userId från cookies!!
-  });
+    const newRecipe = new RecipeModel({
+      recipeTitle: req.body.recipeTitle,
+      recipeTime: parseInt(req.body.recipeTime),
+      recipeDescription: req.body.recipeDescription,
+      imageUrl: "/uploads/" + filename,
+      createdByUser: tokenData.userId, //hämtar userId från cookies!!
+    });
 
-  if(validateRecipe(newRecipe)){
-    await newRecipe.save();
+    if (validateRecipe(newRecipe)) {
+      await newRecipe.save();
 
-    res.redirect('/recipes/my-recipes');
-  }else{
-    res.render('recipes/recipes-create' , {
-      error: 'You did not enter all fields correctly',
-      ...newRecipe
-    })
+      res.redirect("/recipes/my-recipes");
+    } else {
+      res.render("recipes/recipes-create", {
+        error: "You did not enter all fields correctly",
+        ...newRecipe,
+      });
+    }
+    // await newRecipe.save();
+
+    // res.redirect("/");
+  } else {
+    res.render("recipes/recipes-create", {
+      error: "You have to upload a picture",
+    });
   }
-  // await newRecipe.save();
-
-  // res.redirect("/");
-}
-else {
-  res.render("recipes/recipes-create", {
-    error: "You have to upload a picture",
-  });
-}
 });
 
 //////hämta ett single recipe och posta en review på receptet//////
@@ -127,7 +127,6 @@ router.post("/:id/reviews/", async (req, res) => {
   const { token } = req.cookies;
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
   const recipeId = req.params.id;
-  
 
   const newReview = new ReviewModel({
     reviewDescription: req.body.reviewDescription,
