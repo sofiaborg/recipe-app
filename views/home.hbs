@@ -3,13 +3,16 @@
 
   <h2>All recipes</h2>
 
-  <div class="all-recipes-container">
+  <div class="my-recipes-container">
     {{#each recipesWithUsers}}
-      <div class="each-recipe-container">
-        <h3> <a href="/recipes/{{_id}}">{{recipeTitle}}</a> </h3>
-        <p>Cooking time: {{recipeTime}} min</p>
-        <p>{{recipeDescription}}</p>
-        <p>created by: {{createdByUser.username}}</p>
+      <div class="each-recipes-container">
+        <div class="img-container">
+      <img class="my-img" src="{{imageUrl}}" alt="{{name}}" />
+      </div><br>
+        <h3 class="recipe-title"> <a href="/recipes/{{_id}}">{{recipeTitle}}</a> </h3>
+        <p class="cooking-time">Cooking time: {{recipeTime}} min</p>
+        {{!-- <p>{{recipeDescription}}</p> --}}
+        <p class="created-by">created by: {{createdByUser.username}}</p>
         <a href="/recipe/create"></a>
       </div>
     {{/each}}
