@@ -4,7 +4,6 @@
 @import "myRecipes";
 @import "loginpage";
 @import "registerpage";
-// @import "allRecipes";
 
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -14,7 +13,6 @@
 body {
   @include hamburger;
   @include myRecipes;
-  // @include allRecipes;
   margin: 0 auto;
   h2 {
     text-align: center;
