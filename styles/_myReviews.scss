@@ -1,0 +1,36 @@
+@mixin myReviews {
+    
+    .my-reviews-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 25px;
+      
+      .each-reviews-container {
+        width: 250px;
+        height: 250px;
+        padding: 10px;
+        overflow: hidden;
+        border-radius: 25px;
+        background-color: rgba(240, 239, 239, 0.952);
+      }
+    }
+
+    a{
+        text-decoration: none;
+        color:black;
+        font-size: 1.2rem;
+    }
+    .crud{
+        margin-top: 10px;
+        a{
+           font-size: 12px;  
+        }
+    }
+    a:hover{
+        cursor: pointer;
+        color:rgba(0, 0, 0, 0.692);
+    }
+}
