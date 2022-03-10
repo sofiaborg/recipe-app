@@ -176,7 +176,7 @@ body {
   margin: 0 auto;
 }
 body header {
-  background-color: #659B5E;
+  background-color: #BE5A38;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.103);
   padding: 10px;
   width: 100%;
@@ -462,9 +462,9 @@ body .four-people-text {
     width: 100%;
   }
   body .header {
-    width: 250px;
+    width: 310px;
     min-height: 100vh;
-    background: #659B5E;
+    background-color: #BE5A38;
   }
   body .header img {
     width: 170px;
