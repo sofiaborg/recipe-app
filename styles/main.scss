@@ -12,13 +12,13 @@ body {
   @include hamburger;
   @include myRecipes;
   margin: 0 auto;
-  // img {
-  //   width: 160px;
-  // }
-
-h2 {
-  text-align: center;
-}}
+  h2 {
+    text-align: center;
+  }
+  .four-people-text{
+    text-align: center;
+  }
+}
 .menu-desktop {
   visibility: hidden;
 }
@@ -48,6 +48,15 @@ h2 {
 .each-reviews-container {
   padding: 25px;
   border: 1px solid rgba(0, 0, 0, 0.418);
+}
+
+// Create recipe
+.create-title{
+ width: 210px
+}
+
+.create-minutes{
+  width: 140px;
 }
 
 @media screen and(min-width: 768px) {

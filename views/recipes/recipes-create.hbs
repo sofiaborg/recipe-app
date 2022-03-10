@@ -1,10 +1,10 @@
 <h2>Create new recipe</h2>
-<p>All recipes are for 4 people</p>
+<p class="four-people-text">All recipes are for 4 people</p>
 
 <div class="my-recipes-container">
 <form action="/recipes/create" method="post" enctype="multipart/form-data">
-    <input type="text" name="recipeTitle" placeholder="Title"> 
-    <input type="number" min="0" name="recipeTime" placeholder="Cooking time - min"><br><br>
+    <input type="text" name="recipeTitle" placeholder="Title" class="create-title"> 
+    <input type="number" min="0" name="recipeTime" placeholder="Cooking time - min" class="create-minutes"><br><br>
     <textarea name="recipeDescription" cols="50" rows="20" placeholder="Recipe description"></textarea><br><br>
     <fieldset>
         <label for="image">Racipe image</label><br><br>
