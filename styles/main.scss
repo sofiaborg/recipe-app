@@ -14,22 +14,12 @@ body {
   @include hamburger;
   @include myRecipes;
   margin: 0 auto;
-<<<<<<< HEAD
   h2 {
     text-align: center;
   }
-  .four-people-text{
+  .four-people-text {
     text-align: center;
   }
-=======
-  // img {
-  //   width: 160px;
-  // }
-
-  h2 {
-    text-align: center;
-  }
->>>>>>> 8342b29da94ac8bab1e2002dfb5f0566700fce53
 }
 .menu-desktop {
   visibility: hidden;
@@ -63,11 +53,11 @@ body {
 }
 
 // Create recipe
-.create-title{
- width: 210px
+.create-title {
+  width: 210px;
 }
 
-.create-minutes{
+.create-minutes {
   width: 140px;
 }
 

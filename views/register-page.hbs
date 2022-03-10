@@ -1,29 +1,6 @@
 <div class="register-wrapper">
   <a href="/" class="logo"><img src="/images/logo.png" alt="" /></a>
 
-<<<<<<< HEAD
-<form action="/user/register" method="post">
-  <input
-    type="text"
-    name="firstname"
-    value="{{validationUser.firstname}}"
-    placeholder="First name"
-  />
-  <input type="text" name="lastname" placeholder="Surname" required />
-  <input type="text" name="email" placeholder="Email" required />
-  <input type="text" name="username" placeholder="Username" required />
-  <input type="password" name="password" placeholder="Password" required />
-  <input
-    type="password
-    "
-    name="confirmPassword"
-    placeholder="Confirm password"
-    required
-  />
-  <input type="submit" value="Register" />
-</form>
- <p class="error">{{error}}</p>
-=======
   <h2>Register new user</h2>
 
   <form action="/user/register" method="post" class="register-form">
@@ -47,7 +24,6 @@
   </form>
   <p class="error">{{error}}</p>
 </div>
->>>>>>> 8342b29da94ac8bab1e2002dfb5f0566700fce53
 {{#if user}}
   <p>{{user}} already exists</p>
 {{/if}}
