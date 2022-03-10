@@ -6,6 +6,7 @@
 @import "registerpage";
 @import "editReview";
 
+@import "myReviews";
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -14,6 +15,7 @@
 body {
   @include hamburger;
   @include myRecipes;
+  @include myReviews;
   margin: 0 auto;
   h2 {
     text-align: center;
@@ -40,18 +42,18 @@ body {
 //   border: 1px solid rgba(0, 0, 0, 0.418);
 // }
 
-.my-reviews-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-}
+// .my-reviews-container {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 25px;
+// }
 
-.each-reviews-container {
-  padding: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.418);
-}
+// .each-reviews-container {
+//   padding: 25px;
+//   border: 1px solid rgba(0, 0, 0, 0.418);
+// }
 
 // Create recipe
 .create-title {

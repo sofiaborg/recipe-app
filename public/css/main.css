@@ -194,7 +194,7 @@ body {
   margin: 0 auto;
 }
 body header {
-  background-color: #659B5E;
+  background-color: #BE5A38;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.103);
   padding: 10px;
   width: 100%;
@@ -404,6 +404,9 @@ body .my-recipes-container a:hover {
   cursor: pointer;
   color: rgba(0, 0, 0, 0.692);
 }
+body .my-recipes-container .created-by {
+  padding: 0px 22px;
+}
 @media screen and (min-width: 1024px) {
   body .each-recipes-container {
     width: 250px;
@@ -419,6 +422,37 @@ body .my-recipes-container a:hover {
     max-width: 250px;
   }
 }
+body .my-reviews-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 25px;
+}
+body .my-reviews-container .each-reviews-container {
+  width: 250px;
+  height: 250px;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 25px;
+  background-color: rgba(240, 239, 239, 0.952);
+}
+body a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+}
+body .crud {
+  margin-top: 10px;
+}
+body .crud a {
+  font-size: 12px;
+}
+body a:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.692);
+}
 body h2 {
   text-align: center;
 }
@@ -428,19 +462,6 @@ body .four-people-text {
 
 .menu-desktop {
   visibility: hidden;
-}
-
-.my-reviews-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-}
-
-.each-reviews-container {
-  padding: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.418);
 }
 
 .create-title {
@@ -459,9 +480,9 @@ body .four-people-text {
     width: 100%;
   }
   body .header {
-    width: 250px;
+    width: 310px;
     min-height: 100vh;
-    background: #659B5E;
+    background-color: #BE5A38;
   }
   body .header img {
     width: 170px;
