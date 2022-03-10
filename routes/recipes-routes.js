@@ -57,34 +57,31 @@ router.get("/:id/edit", async (req, res, next) => {
         console.log(recipe);
         res.render("recipes/recipes-edit", recipe);
       } else {
-        res.Status(401);
+        res.render("not-found.hbs");
       }
   }
 });
 
-router.post("/:id/edit", async (req, res,next) => {
-
-  let recipeId = undefined;
-    
-  try {
-      recipeId = ObjectId(req.params.id);
-  }
-  catch {
-      next();
-  }
-  if(recipeId) {
-    const updatedRecipe = {
+router.post("/:id/edit", async (req, res) => {
+  
+  const updatedRecipe = {
     recipeTitle: req.body.recipeTitle,
     recipeTime: parseInt(req.body.recipeTime),
     recipeDescription: req.body.recipeDescription,
   };
 
-  await RecipeModel.updateOne({ _id: req.params.id }, { $set: updatedRecipe });
-  res.redirect("/recipes/my-recipes");
+  if (validateRecipe(updatedRecipe)) {
+    await updatedRecipe.save();
+
+    res.redirect("/recipes/my-recipes");
   } else {
-    res.Status(401);
+    res.render("recipes/recipes-edit", {
+      error: "You did not enter all fields correctly",
+      ...updatedRecipe,
+    });
   }
-  
+  // await RecipeModel.updateOne({ _id: req.params.id }, { $set: updatedRecipe });
+  // res.redirect("/recipes/my-recipes");
 });
 
 router.get("/:id/delete", async (req, res) => {
