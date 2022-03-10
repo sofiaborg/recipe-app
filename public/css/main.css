@@ -108,6 +108,11 @@
   text-decoration: underline;
 }
 
+@media screen and (min-width: 768px) {
+  .login-form input {
+    width: 300px;
+  }
+}
 .register-wrapper {
   display: flex;
   flex-direction: column;
@@ -158,6 +163,11 @@
   text-decoration: underline;
 }
 
+@media screen and (min-width: 768px) {
+  .register-form input {
+    width: 300px;
+  }
+}
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }

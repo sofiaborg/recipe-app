@@ -54,3 +54,8 @@
     text-decoration: underline;
   }
 }
+@media screen and(min-width: 768px) {
+  .register-form input {
+    width: 300px;
+  }
+}
