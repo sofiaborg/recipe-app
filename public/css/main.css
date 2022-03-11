@@ -82,14 +82,14 @@
   border-bottom: 2px solid black;
 }
 .login-wrapper .login-form input[type=submit] {
-  background-color: #f8a203;
+  background-color: #f5900c;
   border-color: black;
   border-style: none;
   border-radius: 0.2em;
   padding: 5px;
 }
 .login-wrapper .login-form input[type=submit]:hover {
-  background-color: #e79b0e;
+  background-color: #df8e25;
 }
 .login-wrapper a:link {
   text-decoration: none;
@@ -137,14 +137,14 @@
   border-bottom: 2px solid black;
 }
 .register-wrapper .register-form input[type=submit] {
-  background-color: #f8a203;
+  background-color: #f5900c;
   border-color: black;
   border-style: none;
   border-radius: 0.2em;
   padding: 5px;
 }
 .register-wrapper .register-form input[type=submit]:hover {
-  background-color: #e79b0e;
+  background-color: #df8e25;
 }
 .register-wrapper a:link {
   text-decoration: none;
@@ -267,7 +267,7 @@ body {
   margin: 0 auto;
 }
 body header {
-  background-color: #BE5A38;
+  background-color: #f5900c;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.103);
   padding: 10px;
   width: 100%;
@@ -295,7 +295,10 @@ body header .menu {
   align-items: center;
 }
 body header .menu .profile-picture {
-  background: url(/images/alison-wang-mou.jpg);
+  background: url(/images/profile\ recipe.jpg);
+  background-size: 150px auto;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 150px;
   height: 150px;
   background-color: rgba(224, 219, 219, 0.384);
@@ -313,7 +316,7 @@ body header .menu form a {
   display: block;
   padding: 10px;
   text-decoration: none;
-  background: #db9e44;
+  background: #fab113;
   margin: 20;
   border-radius: 15px;
   box-shadow: 2px 2px 2px 0px #00000063;
@@ -364,7 +367,7 @@ body header .menu form li:last-child {
   display: block;
   padding: 10px;
   text-decoration: none;
-  background: #bd8532;
+  background: #fab113;
   margin: 20;
   border-radius: 15px;
   box-shadow: 2px 2px 2px 0px #00000063;
@@ -555,7 +558,6 @@ body .four-people-text {
   body .header {
     width: 310px;
     min-height: 100vh;
-    background-color: #BE5A38;
   }
   body .header img {
     width: 170px;
@@ -569,7 +571,10 @@ body .four-people-text {
     color: #272d2d;
   }
   body .header .profile-picture {
-    background: url(/images/alison-wang-mou.jpg);
+    background: url(/images/profile\ recipe.jpg);
+    background-size: 150px auto;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 150px;
     height: 150px;
     background-color: rgba(224, 219, 219, 0.384);
@@ -607,7 +612,7 @@ body .four-people-text {
     display: block;
     padding: 10px;
     text-decoration: none;
-    background: #db9e44;
+    background: #f5900c;
     margin: 20;
     width: 160px;
     border-radius: 15px;
@@ -626,7 +631,7 @@ body .four-people-text {
     display: block;
     padding: 10px;
     text-decoration: none;
-    background: #bd8532;
+    background: #f5900c;
     margin: 20;
     width: 160px;
     border-radius: 15px;

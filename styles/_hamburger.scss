@@ -1,176 +1,177 @@
 @mixin hamburger {
-
-    header{
-        // background-color: #659B5E;
-        background-color: #BE5A38;
-        box-shadow:  1px 1px 4px 0 rgba(0, 0, 0, 0.103);
-        // position: fixed;
-        padding: 10px;
-        width: 100%;
-        z-index: 4;
-        img{
-            width:180px;
-        }
-        .logo{ 
-        float:left;
-        display: block;
-        padding: 10px;   
-        font-size: 1.5em;
-        text-align: center; 
-        text-decoration: none;
-        color: #272d2d;
-        }
-        .menu{
-            clear: both;
-            max-height: 0;
-            transition: max-height 0.6s ease-out;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            .profile-picture{
-                background: url(/images/alison-wang-mou.jpg);
-                width: 150px;
-                height: 150px;
-                background-color:rgba(224, 219, 219, 0.384);
-                border-radius: 50%;
-                margin: 0 auto;
-                margin-bottom: 30px;
-                margin-top: 30px;
-            }
-            form{
-                padding:8px;
-                a{
-                    color: black;
-                    font-size: 1em;
-                    display: block;
-                    padding: 10px;
-                    text-decoration: none;
-                    background: #db9e44;
-                    margin: 20;
-                    border-radius: 15px;
-                    box-shadow: 2px 2px 2px 0px #00000063; 
-                    width: 180px;
-                }
-                input{
-                    border:none;
-                    background-color: transparent;
-                    width: 180px;
-                    font-size: 1em;
-                    cursor: pointer;
-                    text-align: left;
-                    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-                }
-            }
-        }
-        .menu-btn{
-            display: none;
-        }
-        .menu-icon {
-            padding: 26px 18px;
-            position: relative;
-            float: right;
-            cursor: pointer;
-            .nav-icon {
-                background:black;
-                display: block;
-                height: 3px;
-                width: 26px;
-                position: relative; 
-            }
-        }
-        ul{
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            overflow: hidden;
-            a{
-                display: block;
-                // outline: 1px solid black;
-                padding: 20px;
-                text-decoration: none;
-            }
-        }
+  header {
+    // background-color: #659B5E;
+    background-color: rgb(245, 144, 12);
+    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.103);
+    // position: fixed;
+    padding: 10px;
+    width: 100%;
+    z-index: 4;
+    img {
+      width: 180px;
     }
-    header .menu form a:hover{
-        box-shadow: 2px 2px 2px 2px #00000063;
+    .logo {
+      float: left;
+      display: block;
+      padding: 10px;
+      font-size: 1.5em;
+      text-align: center;
+      text-decoration: none;
+      color: #272d2d;
     }
-
-    header .menu form li:last-child {
-        color: black;
-        font-size: 1em;
-        display: block;
-        padding: 10px;
-        text-decoration: none;
-        background: #bd8532;
-        margin: 20;
-        border-radius: 15px;
-        box-shadow: 2px 2px 2px 0px #00000063; 
-        width: 180px;
+    .menu {
+      clear: both;
+      max-height: 0;
+      transition: max-height 0.6s ease-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .profile-picture {
+        background: url(/images/profile\ recipe.jpg);
+        background-size: 150px auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 150px;
+        height: 150px;
+        background-color: rgba(224, 219, 219, 0.384);
+        border-radius: 50%;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        margin-top: 30px;
+      }
+      form {
+        padding: 8px;
+        a {
+          color: black;
+          font-size: 1em;
+          display: block;
+          padding: 10px;
+          text-decoration: none;
+          background: #fab113;
+          margin: 20;
+          border-radius: 15px;
+          box-shadow: 2px 2px 2px 0px #00000063;
+          width: 180px;
         }
-
-    header .menu form li:last-child:hover {
-        box-shadow: 2px 2px 2px 2px #00000063;
-        cursor: pointer;
+        input {
+          border: none;
+          background-color: transparent;
+          width: 180px;
+          font-size: 1em;
+          cursor: pointer;
+          text-align: left;
+          font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+            "Lucida Sans", Arial, sans-serif;
         }
-      
-
-    header .menu-icon .nav-icon::before{
+      }
+    }
+    .menu-btn {
+      display: none;
+    }
+    .menu-icon {
+      padding: 26px 18px;
+      position: relative;
+      float: right;
+      cursor: pointer;
+      .nav-icon {
         background: black;
-        content: "";
         display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 7px;
+        height: 3px;
+        width: 26px;
+        position: relative;
+      }
     }
-    header .menu-icon .nav-icon::after{
-        background: black;
-        content: "";
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      overflow: hidden;
+      a {
         display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: -7px;
+        // outline: 1px solid black;
+        padding: 20px;
+        text-decoration: none;
+      }
     }
+  }
+  header .menu form a:hover {
+    box-shadow: 2px 2px 2px 2px #00000063;
+  }
 
-    header .menu-btn:checked ~ .menu {
-        max-height: 100vh;
-    }
+  header .menu form li:last-child {
+    color: black;
+    font-size: 1em;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    background: #fab113;
+    margin: 20;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px 0px #00000063;
+    width: 180px;
+  }
 
-    header .menu form li:last-child {
-        margin-left: 20px;
-        margin-top: 8px;
+  header .menu form li:last-child:hover {
+    box-shadow: 2px 2px 2px 2px #00000063;
+    cursor: pointer;
+  }
+
+  header .menu-icon .nav-icon::before {
+    background: black;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 7px;
+  }
+  header .menu-icon .nav-icon::after {
+    background: black;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -7px;
+  }
+
+  header .menu-btn:checked ~ .menu {
+    max-height: 100vh;
+  }
+
+  header .menu form li:last-child {
+    margin-left: 20px;
+    margin-top: 8px;
+  }
+
+  // Rotate nav-icon
+  header .menu-btn:checked ~ .menu-icon .nav-icon {
+    background: transparent;
+  }
+  header .menu-btn:checked ~ .menu-icon .nav-icon::before {
+    transform: rotate(-45deg);
+    top: 0;
+  }
+  header .menu-btn:checked ~ .menu-icon .nav-icon::after {
+    transform: rotate(45deg);
+    top: 0;
+  }
+  // .logo-desktop{
+  //         display: none;
+  //     }
+  .header {
+    display: none;
+  }
+  @media screen and(min-width: 1024px) {
+    header {
+      display: none;
     }
-  
-    // Rotate nav-icon
-    header .menu-btn:checked ~ .menu-icon .nav-icon {
-        background: transparent;
-    }
-    header .menu-btn:checked ~ .menu-icon .nav-icon::before {
-        transform: rotate(-45deg);
-        top:0;
-    }
-    header .menu-btn:checked ~ .menu-icon .nav-icon::after {
-        transform: rotate(45deg);
-        top:0
-    }
-    // .logo-desktop{
-    //         display: none;
-    //     }
-        .header{
-            display: none;
-        }
-    @media screen and(min-width: 1024px) {
-        header {
-            display: none;
-        }
     //    .logo-desktop{
     //        display:block;
     //    }
-    .header{
-        display: block;
+    .header {
+      display: block;
     }
-        
-    }
+  }
 }

@@ -2,15 +2,35 @@
 <p class="four-people-text">All recipes are for 4 people</p>
 
 <div class="my-recipes-container">
-<form action="/recipes/create" method="post" enctype="multipart/form-data">
-    <input type="text" name="recipeTitle" placeholder="Title" class="create-title"> 
-    <input type="number" min="0" name="recipeTime" placeholder="Cooking time - min" class="create-minutes"><br><br>
-    <textarea name="recipeDescription" cols="50" rows="20" placeholder="Recipe description"></textarea><br><br>
+  <form action="/recipes/create" method="post" enctype="multipart/form-data">
+    <input
+      type="text"
+      name="recipeTitle"
+      placeholder="Title"
+      class="create-title"
+    />
+    <input
+      type="number"
+      min="0"
+      name="recipeTime"
+      placeholder="Cooking time - min"
+      class="create-minutes"
+    /><br /><br />
+    <textarea
+      name="recipeDescription"
+      cols="50"
+      rows="20"
+      placeholder="Recipe description"
+    ></textarea><br /><br />
     <fieldset>
-        <label for="image">Racipe image</label><br><br>
-        <input type="file" name="image" id="image">
-    </fieldset><br>
+      <label for="image">Racipe image</label><br /><br />
+      <input type="file" name="image" id="image" />
+    </fieldset><br />
     <p class="error">{{error}}</p>
-    <input type="submit" value="Save">
-</form>
+    <input type="submit" value="Save" />
+  </form>
 </div>
+
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam aut repellat
+  quidem rem, atque harum! Maiores nemo in corrupti culpa sunt omnis quod sint,
+  consectetur error earum ad corporis ipsam.</p>
