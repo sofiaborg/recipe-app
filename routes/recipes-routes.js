@@ -6,7 +6,7 @@ const RecipeModel = require("../models/RecipeModel");
 const { ObjectId } = require('mongodb');
 const UserModel = require("../models/UserModel");
 const { Router } = require("express");
-const { getUniqueFilename, validateRecipe } = require("../utils.js");
+const { getUniqueFilename, validateRecipe, validateReview } = require("../utils.js");
 // const path = require('path');
 
 const router = express.Router();
@@ -154,22 +154,26 @@ router.post("/:id/reviews/", async (req, res) => {
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
   const recipeId = req.params.id;
 
-  const newReview = new ReviewModel({
+  if( req.body.reviewDescription.length > 0 && req.body.reviewStars > 0) {
+    const newReview = new ReviewModel({
     reviewDescription: req.body.reviewDescription,
     reviewStars: parseInt(req.body.reviewStars),
     reviewedRecipe: recipeId,
     reviewedByUser: tokenData.userId,
   });
+    //hitta det recept vars ObectId matchar med id i URLen
+        let recipeWithReview = await RecipeModel.findOne({ _id: recipeId });
+        //gå in i reviewed-arrayn i RecipeModel och pusha in den skapade reviewns ObjectId
+        recipeWithReview.reviews.push(newReview._id);
+      
+      await newReview.save();
+      await recipeWithReview.save();
 
-  //hitta det recept vars ObectId matchar med id i URLen
-  let recipeWithReview = await RecipeModel.findOne({ _id: recipeId });
+      res.redirect("/recipes/" + recipeId);
 
-  //gå in i reviewed-arrayn i RecipeModel och pusha in den skapade reviewns ObjectId
-  recipeWithReview.reviews.push(newReview._id);
-  await newReview.save();
-  await recipeWithReview.save();
-
-  res.redirect("/recipes/" + recipeId);
+  } else {
+    res.redirect("/recipes/" + recipeId);
+  }
 });
 
 //LOG OUT

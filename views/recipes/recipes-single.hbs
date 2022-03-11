@@ -15,8 +15,8 @@
       <textarea
         name="reviewDescription"
         cols="50"
-        rows="20"
-      >Review</textarea><br />
+        rows="20" placeholder="Review"
+      ></textarea><br />
       <div class="wrapper">
         <input type="radio" id="st1" value="5" name="reviewStars" />
         <label for="st1"></label>
@@ -29,6 +29,8 @@
         <input type="radio" id="st5" value="1" name="reviewStars" />
         <label for="st5"></label>
       </div>
+         <p class="error">{{error}}</p>
+
       <input type="submit" value="Save" />
     </form>
   </div>

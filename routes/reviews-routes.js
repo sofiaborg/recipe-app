@@ -31,15 +31,21 @@ router.post("/:id/edit", async (req, res) => {
   //   reviewDescription: req.body.reviewDescription,
   //   reviewStars: parseInt(req.body.reviewStars),
   // };
+  if( req.body.reviewDescription.length > 0 && req.body.reviewStars > 0){
+    const review = await ReviewModel.findById(req.params.id);
 
-  const review = await ReviewModel.findById(req.params.id);
+    review.reviewDescription = req.body.reviewDescription;
+    review.reviewStars = parseInt(req.body.reviewStars);
 
-  review.reviewDescription = req.body.reviewDescription;
-  review.reviewStars = parseInt(req.body.reviewStars);
+    await review.save();
 
-  await review.save();
-
-  res.redirect("/reviews/my-reviews");
+    res.redirect("/reviews/my-reviews");
+  } else {
+    res.render("reviews/reviews-edit", {
+      error: "No changes were made, please fill in all fields",
+    });
+  }
+  
 });
 
 router.get("/:id/delete", async (req, res) => {
