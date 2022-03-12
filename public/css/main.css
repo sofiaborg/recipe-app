@@ -540,6 +540,14 @@ body .four-people-text {
   visibility: hidden;
 }
 
+.wrapper-mobile .not-found-container {
+  margin-top: 200px;
+}
+.wrapper-mobile .not-found-container .not-found-page {
+  color: red;
+  text-align: center;
+}
+
 .create-title {
   width: 210px;
 }

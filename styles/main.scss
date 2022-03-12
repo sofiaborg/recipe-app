@@ -28,32 +28,16 @@ body {
   visibility: hidden;
 }
 
-// // MY-RECIPES-HBS
-// .my-recipes-container {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   gap: 25px;
-// }
-
-// .each-recipes-container {
-//   padding: 25px;
-//   border: 1px solid rgba(0, 0, 0, 0.418);
-// }
-
-// .my-reviews-container {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   gap: 25px;
-// }
-
-// .each-reviews-container {
-//   padding: 25px;
-//   border: 1px solid rgba(0, 0, 0, 0.418);
-// }
+.wrapper-mobile {
+  .not-found-container{
+    margin-top: 200px;
+  .not-found-page {
+    color: red;
+    text-align: center;
+    // margin-top: 100px;
+  }
+  }
+}
 
 // Create recipe
 .create-title {
