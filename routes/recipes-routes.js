@@ -47,14 +47,12 @@ router.get("/:id/edit", async (req, res, next) => {
         const user = res.locals.userId;
 
         let findUser = await RecipeModel.findOne({ _id: recipeId });
-        console.log(findUser.createdByUser);
         const correctUser = findUser.createdByUser.toString();
 
     if (cookieId === correctUser) {
         // const recipe = await RecipeModel.find({ createdByUser: user }).lean();
         const recipe = await RecipeModel.findById(req.params.id).lean();
 
-        console.log(recipe);
         res.render("recipes/recipes-edit", recipe);
       } else {
         res.render("not-found.hbs");
@@ -180,7 +178,6 @@ router.post("/:id/reviews/", async (req, res) => {
 router.post("/log-out", (req, res) => {
   // sätt token(cookie) till en tom sträng och ta bort den direkt
   // res.cookie("token", "", {maxAge:0})
-  console.log("working");
   res.redirect("/");
 });
 
