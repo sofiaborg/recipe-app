@@ -32,6 +32,7 @@
       border-style: none;
       border-radius: 0.2em;
       padding: 5px;
+      cursor: pointer;
     }
     input[type="submit"]:hover {
       background-color: rgb(231, 155, 14);
@@ -57,5 +58,6 @@
 @media screen and(min-width: 768px) {
   .register-form input {
     width: 300px;
+    cursor: pointer;
   }
 }
