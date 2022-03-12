@@ -87,6 +87,7 @@
   border-style: none;
   border-radius: 0.2em;
   padding: 5px;
+  cursor: pointer;
 }
 .login-wrapper .login-form input[type=submit]:hover {
   background-color: #df8e25;
@@ -142,6 +143,7 @@
   border-style: none;
   border-radius: 0.2em;
   padding: 5px;
+  cursor: pointer;
 }
 .register-wrapper .register-form input[type=submit]:hover {
   background-color: #df8e25;
@@ -163,6 +165,7 @@
 @media screen and (min-width: 768px) {
   .register-form input {
     width: 300px;
+    cursor: pointer;
   }
 }
 .review-form {
@@ -221,6 +224,7 @@
   border-style: none;
   border-radius: 0.2em;
   padding: 5px;
+  cursor: pointer;
 }
 .single-wrapper .review-wrapper input[type=submit]:hover {
   background-color: #e79b0e;
@@ -475,9 +479,9 @@ body .my-recipes-container .each-recipes-container .crud {
 }
 body .my-recipes-container .each-recipes-container .crud a {
   font-size: 12px;
+  cursor: pointer;
 }
 body .my-recipes-container a:hover {
-  cursor: pointer;
   color: rgba(0, 0, 0, 0.692);
 }
 body .my-recipes-container .created-by {

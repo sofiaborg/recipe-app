@@ -1,88 +1,84 @@
 @mixin myRecipes {
+  // MY-RECIPES-HBS
+  .wrapper-mobile {
+    margin-top: 0px;
+    h2 {
+      margin-bottom: 80px;
+    }
+  }
 
-// MY-RECIPES-HBS
-.wrapper-mobile{
-margin-top: 0px;
-h2{
-    margin-bottom: 80px;
-}
-}
-
-.my-recipes-container {
+  .my-recipes-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     gap: 25px;
-  
-  .each-recipes-container {
-    width: 250px;
-    height: 270px;
-    overflow: hidden;
-    border-radius: 25px;
-    background-color: rgba(240, 239, 239, 0.952);
-    .img-container{
+
+    .each-recipes-container {
+      width: 250px;
+      height: 270px;
+      overflow: hidden;
+      border-radius: 25px;
+      background-color: rgba(240, 239, 239, 0.952);
+      .img-container {
         width: 250px;
         height: 150px;
         overflow: hidden;
         display: flex;
         align-items: center;
-        .my-img{
-        max-width: 250px;
-        border-radius: 25px 25px 0px 0px;
-        display: block;
-        overflow: hidden;   
-         }
-     }
-    .recipe-title{
-        padding:0px 20px;
-        margin: 0;
-    }
-    .cooking-time{
-        padding:0px 20px
-    }
-    a{
-        text-decoration: none;
-        color:black;
-        font-size: 1.2rem;
-    }
-    .crud{
-        padding:0px 20px;
-       
-        a{
-           font-size: 12px;  
+        .my-img {
+          max-width: 250px;
+          border-radius: 25px 25px 0px 0px;
+          display: block;
+          overflow: hidden;
         }
+      }
+      .recipe-title {
+        padding: 0px 20px;
+        margin: 0;
+      }
+      .cooking-time {
+        padding: 0px 20px;
+      }
+      a {
+        text-decoration: none;
+        color: black;
+        font-size: 1.2rem;
+      }
+      .crud {
+        padding: 0px 20px;
+
+        a {
+          font-size: 12px;
+          cursor: pointer;
+        }
+      }
     }
-    } 
-    a:hover{
-        cursor: pointer;
-        color:rgba(0, 0, 0, 0.692);
+    a:hover {
+      color: rgba(0, 0, 0, 0.692);
     }
     .created-by {
-        padding: 0px 22px;
+      padding: 0px 22px;
     }
- }
+  }
 
- @media screen and(min-width: 768px) {
+  @media screen and(min-width: 768px) {
+  }
 
-}
-
-@media screen and(min-width: 1024px) {
+  @media screen and(min-width: 1024px) {
     .each-recipes-container {
+      width: 250px;
+      height: 270px;
+      overflow: hidden;
+      .img-container {
         width: 250px;
-        height: 270px;
+        height: 150px;
         overflow: hidden;
-        .img-container{
-            width: 250px;
-            height: 150px;
-            overflow: hidden;
-            .my-img{
-            max-width: 250px;
-            
+        .my-img {
+          max-width: 250px;
         }
+      }
     }
-}
-}
-
+  }
 }
