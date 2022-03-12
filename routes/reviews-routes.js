@@ -42,7 +42,7 @@ router.post("/:id/edit", async (req, res) => {
     res.redirect("/reviews/my-reviews");
   } else {
     res.render("reviews/reviews-edit", {
-      error: "No changes were made, please fill in all fields",
+      error: "Please fill in all fields",
     });
   }
   
