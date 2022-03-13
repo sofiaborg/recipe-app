@@ -5,10 +5,11 @@
     name="reviewDescription"
     cols="30"
     rows="10"
+    required
   >{{reviewDescription}}</textarea>
 
   <div class="wrapper">
-    <input type="radio" id="st1" value="5" name="reviewStars" />
+    <input type="radio" id="st1" value="5" name="reviewStars" required />
     <label for="st1"></label>
     <input type="radio" id="st2" value="4" name="reviewStars" />
     <label for="st2"></label>
@@ -18,8 +19,9 @@
     <label for="st4"></label>
     <input type="radio" id="st5" value="1" name="reviewStars" />
     <label for="st5"></label>
+
   </div>
-         <p class="error">{{error}}</p>
+  <p class="error">{{error}}</p>
 
   <input type="submit" value="Save" />
 </form>
