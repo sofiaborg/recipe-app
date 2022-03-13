@@ -27,13 +27,20 @@ router.get("/:id/edit", async (req, res) => {
 });
 
 router.post("/:id/edit", async (req, res) => {
-  const review = await ReviewModel.findById(req.params.id);
+  const review = await ReviewModel.findById(req.params.id).lean();
   review.reviewDescription = req.body.reviewDescription;
   review.reviewStars = parseInt(req.body.reviewStars);
 
   if (review.reviewDescription.length > 0 && review.reviewStars > 0) {
-    await review.save();
-
+    await ReviewModel.findByIdAndUpdate(
+      {
+        _id: review._id,
+      },
+      {
+        reviewDescription: req.body.reviewDescription,
+        reviewStars: req.body.reviewStars,
+      }
+    );
     res.redirect("/reviews/my-reviews");
   } else {
     res.render("reviews/reviews-edit", {
