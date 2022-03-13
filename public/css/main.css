@@ -280,6 +280,27 @@
   cursor: pointer;
 }
 
+.editrecipe-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+}
+.editrecipe-form input[type=submit] {
+  background-color: #f8a203;
+  border-color: black;
+  border-style: none;
+  border-radius: 0.2em;
+  padding: 5px;
+}
+.editrecipe-form input[type=submit]:hover {
+  background-color: #e79b0e;
+}
+.editrecipe-form textarea {
+  outline: none;
+}
+
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
