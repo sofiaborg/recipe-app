@@ -4,9 +4,6 @@
 }
 
 .login-wrapper {
-  /*   background: url("/images/Foodtable.jpg") no-repeat;
-  background-size: auto;
-  background-position: left center; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -608,6 +605,7 @@ body .four-people-text {
   body .header {
     width: 310px;
     min-height: 100vh;
+    background-color: #f5900c;
   }
   body .header img {
     width: 170px;
@@ -662,7 +660,7 @@ body .four-people-text {
     display: block;
     padding: 10px;
     text-decoration: none;
-    background: #f5900c;
+    background: #fab113;
     margin: 20;
     width: 160px;
     border-radius: 15px;
@@ -681,7 +679,7 @@ body .four-people-text {
     display: block;
     padding: 10px;
     text-decoration: none;
-    background: #f5900c;
+    background: #fab113;
     margin: 20;
     width: 160px;
     border-radius: 15px;
