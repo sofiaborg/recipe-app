@@ -12,6 +12,7 @@ const comparePassword = (password, hash) => {
   return correct;
 };
 
+//validering
 function validateRecipe(recipe) {
   let valid = true;
 
@@ -25,16 +26,15 @@ function validateRecipe(recipe) {
 function validateReview(review) {
   let valid = true;
 
-  valid = valid && (review.reviewDescription);
-  valid = valid && (review.reviewDescription.length > 0);
+  valid = valid && review.reviewDescription;
+  valid = valid && review.reviewDescription.length > 0;
 
-  valid = valid && (review.reviewStars);
-  valid = valid && (!isNaN(review.reviewStars));
-  valid = valid && (review.reviewStars > 0);
+  valid = valid && review.reviewStars;
+  valid = valid && !isNaN(review.reviewStars);
+  valid = valid && review.reviewStars > 0;
 
- console.log('funktion funkar men fel validering');
+  console.log("funktion funkar men fel validering");
 }
-
 
 //skapa ett unikt filnamn till uppladdade bilder
 const getUniqueFilename = (filename) => {
@@ -50,5 +50,5 @@ module.exports = {
   comparePassword,
   getUniqueFilename,
   validateRecipe,
-  validateReview
+  validateReview,
 };
