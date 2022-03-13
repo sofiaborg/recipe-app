@@ -27,16 +27,11 @@ router.get("/:id/edit", async (req, res) => {
 });
 
 router.post("/:id/edit", async (req, res) => {
-  // const updatedReview =  ReviewModel{
-  //   reviewDescription: req.body.reviewDescription,
-  //   reviewStars: parseInt(req.body.reviewStars),
-  // };
-  if( req.body.reviewDescription.length > 0 && req.body.reviewStars > 0){
-    const review = await ReviewModel.findById(req.params.id);
+  const review = await ReviewModel.findById(req.params.id);
+  review.reviewDescription = req.body.reviewDescription;
+  review.reviewStars = parseInt(req.body.reviewStars);
 
-    review.reviewDescription = req.body.reviewDescription;
-    review.reviewStars = parseInt(req.body.reviewStars);
-
+  if (review.reviewDescription.length > 0 && review.reviewStars > 0) {
     await review.save();
 
     res.redirect("/reviews/my-reviews");
@@ -45,7 +40,6 @@ router.post("/:id/edit", async (req, res) => {
       error: "Please fill in all fields",
     });
   }
-  
 });
 
 router.get("/:id/delete", async (req, res) => {

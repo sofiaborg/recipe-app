@@ -1,9 +1,13 @@
-<p>Are you sure you wish to delete this review?</p>
-
-<p>{{reviewDescription}}</p>
-<p>{{reviewStars}}</p>
-<p>{{reviewDate}}</p>
-
-<form action="/reviews/{{_id}}/delete" method="post">
-  <input type="submit" value="Delete" />
-</form>
+<div>
+  <div class="deleteWrapper">
+    <div>
+      <p>{{reviewDescription}}</p>
+    </div>
+    <div>
+      <p>Are you sure you wish to delete this review?</p>
+    </div>
+    <form action="/reviews/{{_id}}/delete" method="post">
+      <input type="submit" value="Delete" />
+    </form>
+  </div>
+</div>

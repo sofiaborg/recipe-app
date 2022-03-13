@@ -1,0 +1,20 @@
+div {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .deleteWrapper {
+    padding: 20px;
+    width: 400px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: rgba(224, 219, 219, 0.384);
+    form {
+      input {
+        cursor: pointer;
+      }
+    }
+  }
+}
