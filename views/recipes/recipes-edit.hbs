@@ -1,11 +1,13 @@
 <h2>Edit recipe</h2>
 
 <form action="/recipes/{{_id}}/edit" method="post">
-    <input type="text" name="recipeTitle" value="{{recipeTitle}}">
-    <input type="number" name="recipeTime" value="{{recipeTime}}"><br><br>
-    <textarea name="recipeDescription" cols="50" rows="20">{{recipeDescription}}</textarea><br>
-    <p class="error">{{error}}</p>
-    <input type="submit" value="Save">
+  <input type="text" name="recipeTitle" value="{{recipeTitle}}" />
+  <input type="number" name="recipeTime" value="{{recipeTime}}" /><br /><br />
+  <textarea
+    name="recipeDescription"
+    cols="50"
+    rows="20"
+  >{{recipeDescription}}</textarea><br />
+  <p class="error">{{error}}</p>
+  <input type="submit" value="Save" />
 </form>
-
-

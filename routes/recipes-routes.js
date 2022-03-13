@@ -61,19 +61,25 @@ router.get("/:id/edit", async (req, res, next) => {
 });
 
 router.post("/:id/edit", async (req, res) => {
-  const updatedRecipe = await RecipeModel.findById(req.params.id);
-  updatedRecipe.recipeTitle = req.body.recipeTitle;
-  updatedRecipe.recipeTime = parseInt(req.body.recipeTime);
-  updatedRecipe.recipeDescription = req.body.recipeDescription;
+  const recipe = await RecipeModel.findById(req.params.id).lean();
+  recipe.recipeTitle = req.body.recipeTitle;
+  recipe.recipeTime = parseInt(req.body.recipeTime);
+  recipe.recipeDescription = req.body.recipeDescription;
 
-  if (validateRecipe(updatedRecipe)) {
-    await updatedRecipe.save();
-
+  if (validateRecipe(recipe)) {
+    await RecipeModel.findByIdAndUpdate(
+      { _id: recipe._id },
+      {
+        recipeTitle: req.body.recipeTitle,
+        recipeTime: req.body.recipeTime,
+        recipeDescription: req.body.recipeDescription,
+      }
+    );
     res.redirect("/recipes/my-recipes");
   } else {
     res.render("recipes/recipes-edit", {
+      recipe,
       error: "You did not enter all fields correctly",
-      ...updatedRecipe,
     });
   }
   // await RecipeModel.updateOne({ _id: req.params.id }, { $set: updatedRecipe });
