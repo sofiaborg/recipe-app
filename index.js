@@ -1,3 +1,6 @@
+///GRUPPMEDLEMMAR///
+///FANNY ROSÉN, SOFIA BORG, SOFIE BLOM///
+
 /////////require//////////
 require("dotenv").config();
 require("./mongoose");
@@ -81,7 +84,7 @@ app.use("/reviews", forceAuthorize, reviewsRouter);
 // 404
 app.use("/", (req, res) => {
   // vilken??
-  res.status(404).render('not-found')
+  res.status(404).render("not-found");
   // res.render("not-found");
 });
 
