@@ -263,7 +263,7 @@
     max-width: 700px;
   }
 }
-div {
+.deleteDiv {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -271,14 +271,14 @@ div {
   justify-content: center;
   align-items: center;
 }
-div .deleteWrapper {
+.deleteDiv .deleteWrapper {
   padding: 20px;
   width: 400px;
   height: 200px;
   border-radius: 20px;
   background-color: rgba(224, 219, 219, 0.384);
 }
-div .deleteWrapper form input {
+.deleteDiv .deleteWrapper form input {
   cursor: pointer;
 }
 
