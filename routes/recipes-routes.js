@@ -3,10 +3,14 @@ const fileUpload = require("express-fileupload");
 const jwt = require("jsonwebtoken");
 const ReviewModel = require("../models/ReviewModel.js");
 const RecipeModel = require("../models/RecipeModel");
-const { ObjectId } = require('mongodb');
+const { ObjectId } = require("mongodb");
 const UserModel = require("../models/UserModel");
 const { Router } = require("express");
-const { getUniqueFilename, validateRecipe, validateReview } = require("../utils.js");
+const {
+  getUniqueFilename,
+  validateRecipe,
+  validateReview,
+} = require("../utils.js");
 // const path = require('path');
 
 const router = express.Router();
@@ -34,34 +38,32 @@ router.get("/my-recipes", async (req, res, next) => {
 router.get("/:id/edit", async (req, res, next) => {
   // const recipeId = req.params.id; // receptet ID
   let recipeId = undefined;
-    
-  try {
-      recipeId = ObjectId(req.params.id);
-  }
-  catch {
-      next();
-  }
-  if(recipeId){
-      const cookieId = res.locals.userId; // ID på den som är inloggad
-        
-        const user = res.locals.userId;
 
-        let findUser = await RecipeModel.findOne({ _id: recipeId });
-        const correctUser = findUser.createdByUser.toString();
+  try {
+    recipeId = ObjectId(req.params.id);
+  } catch {
+    next();
+  }
+  if (recipeId) {
+    const cookieId = res.locals.userId; // ID på den som är inloggad
+
+    const user = res.locals.userId;
+
+    let findUser = await RecipeModel.findOne({ _id: recipeId });
+    const correctUser = findUser.createdByUser.toString();
 
     if (cookieId === correctUser) {
-        // const recipe = await RecipeModel.find({ createdByUser: user }).lean();
-        const recipe = await RecipeModel.findById(req.params.id).lean();
+      // const recipe = await RecipeModel.find({ createdByUser: user }).lean();
+      const recipe = await RecipeModel.findById(req.params.id).lean();
 
-        res.render("recipes/recipes-edit", recipe);
-      } else {
-        res.render("not-found.hbs");
-      }
+      res.render("recipes/recipes-edit", recipe);
+    } else {
+      res.render("not-found.hbs");
+    }
   }
 });
 
 router.post("/:id/edit", async (req, res) => {
-  
   const updatedRecipe = {
     recipeTitle: req.body.recipeTitle,
     recipeTime: parseInt(req.body.recipeTime),
@@ -152,23 +154,22 @@ router.post("/:id/reviews/", async (req, res) => {
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
   const recipeId = req.params.id;
 
-  if( req.body.reviewDescription.length > 0 && req.body.reviewStars > 0) {
+  if (req.body.reviewDescription.length > 0 && req.body.reviewStars > 0) {
     const newReview = new ReviewModel({
-    reviewDescription: req.body.reviewDescription,
-    reviewStars: parseInt(req.body.reviewStars),
-    reviewedRecipe: recipeId,
-    reviewedByUser: tokenData.userId,
-  });
+      reviewDescription: req.body.reviewDescription,
+      reviewStars: parseInt(req.body.reviewStars),
+      reviewedRecipe: recipeId,
+      reviewedByUser: tokenData.userId,
+    });
     //hitta det recept vars ObectId matchar med id i URLen
-        let recipeWithReview = await RecipeModel.findOne({ _id: recipeId });
-        //gå in i reviewed-arrayn i RecipeModel och pusha in den skapade reviewns ObjectId
-        recipeWithReview.reviews.push(newReview._id);
-      
-      await newReview.save();
-      await recipeWithReview.save();
+    let recipeWithReview = await RecipeModel.findOne({ _id: recipeId });
+    //gå in i reviewed-arrayn i RecipeModel och pusha in den skapade reviewns ObjectId
+    recipeWithReview.reviews.push(newReview._id);
 
-      res.redirect("/recipes/" + recipeId);
+    await newReview.save();
+    await recipeWithReview.save();
 
+    res.redirect("/recipes/" + recipeId);
   } else {
     res.redirect("/recipes/" + recipeId);
   }
