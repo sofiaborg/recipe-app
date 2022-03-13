@@ -47,13 +47,10 @@ router.get("/:id/edit", async (req, res, next) => {
   if (recipeId) {
     const cookieId = res.locals.userId; // ID på den som är inloggad
 
-    const user = res.locals.userId;
-
     let findUser = await RecipeModel.findOne({ _id: recipeId });
     const correctUser = findUser.createdByUser.toString();
 
     if (cookieId === correctUser) {
-      // const recipe = await RecipeModel.find({ createdByUser: user }).lean();
       const recipe = await RecipeModel.findById(req.params.id).lean();
 
       res.render("recipes/recipes-edit", recipe);
@@ -64,11 +61,10 @@ router.get("/:id/edit", async (req, res, next) => {
 });
 
 router.post("/:id/edit", async (req, res) => {
-  const updatedRecipe = {
-    recipeTitle: req.body.recipeTitle,
-    recipeTime: parseInt(req.body.recipeTime),
-    recipeDescription: req.body.recipeDescription,
-  };
+  const updatedRecipe = await RecipeModel.findById(req.params.id);
+  updatedRecipe.recipeTitle = req.body.recipeTitle;
+  updatedRecipe.recipeTime = parseInt(req.body.recipeTime);
+  updatedRecipe.recipeDescription = req.body.recipeDescription;
 
   if (validateRecipe(updatedRecipe)) {
     await updatedRecipe.save();
@@ -130,7 +126,6 @@ router.post("/create", async (req, res) => {
         ...newRecipe,
       });
     }
-    // await newRecipe.save();
 
     // res.redirect("/");
   } else {
