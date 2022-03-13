@@ -11,20 +11,15 @@ const {
   validateRecipe,
   validateReview,
 } = require("../utils.js");
-// const path = require('path');
-
 const router = express.Router();
 
 //////MINA RECEPT//////
 
 //////hämta ALLA MINA recept//////
 router.get("/my-recipes", async (req, res, next) => {
-  // const myRecipes = await RecipeModel.find().lean();
-
   const { token } = req.cookies;
   const tokenData = jwt.decode(token, process.env.JWTSECRET);
   user = tokenData.userId;
-  // const recipeId = req.params.id;
 
   if (user) {
     const myRecipes = await RecipeModel.find({ createdByUser: user }).lean();
@@ -36,7 +31,6 @@ router.get("/my-recipes", async (req, res, next) => {
 
 //////uppdatera/radera MITT recept//////
 router.get("/:id/edit", async (req, res, next) => {
-  // const recipeId = req.params.id; // receptet ID
   let recipeId = undefined;
 
   try {
@@ -82,8 +76,6 @@ router.post("/:id/edit", async (req, res) => {
       error: "You did not enter all fields correctly",
     });
   }
-  // await RecipeModel.updateOne({ _id: req.params.id }, { $set: updatedRecipe });
-  // res.redirect("/recipes/my-recipes");
 });
 
 router.get("/:id/delete", async (req, res) => {
@@ -108,7 +100,7 @@ router.post("/create", async (req, res) => {
 
   // håmtar fil från formuläret, filnamn och vart filen ska sparas
   if (req.files && req.files.image) {
-    const image = req.files.image; //gör en if-sats. denna ska bara köras om req.files är satt!
+    const image = req.files.image;
     const filename = getUniqueFilename(image.name);
     const uploadPath = "./public/uploads/" + filename;
 
@@ -132,8 +124,6 @@ router.post("/create", async (req, res) => {
         ...newRecipe,
       });
     }
-
-    // res.redirect("/");
   } else {
     res.render("recipes/recipes-create", {
       error: "You have to upload a picture",
@@ -178,8 +168,6 @@ router.post("/:id/reviews/", async (req, res) => {
 
 //LOG OUT
 router.post("/log-out", (req, res) => {
-  // sätt token(cookie) till en tom sträng och ta bort den direkt
-  // res.cookie("token", "", {maxAge:0})
   res.redirect("/");
 });
 

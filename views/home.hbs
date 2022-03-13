@@ -1,5 +1,4 @@
 {{#if loggedIn}}
-  {{!-- <p>Welcome {{username}}</p> --}}
 
   <h2>All recipes</h2>
 
@@ -7,11 +6,12 @@
     {{#each recipesWithUsers}}
       <div class="each-recipes-container">
         <div class="img-container">
-      <img class="my-img" src="{{imageUrl}}" alt="{{name}}" />
-      </div><br>
-        <h3 class="recipe-title"> <a href="/recipes/{{_id}}">{{recipeTitle}}</a> </h3>
+          <img class="my-img" src="{{imageUrl}}" alt="{{name}}" />
+        </div><br />
+        <h3 class="recipe-title">
+          <a href="/recipes/{{_id}}">{{recipeTitle}}</a>
+        </h3>
         <p class="cooking-time">Cooking time: {{recipeTime}} min</p>
-        {{!-- <p>{{recipeDescription}}</p> --}}
         <p class="created-by">created by: {{createdByUser.username}}</p>
         <a href="/recipe/create"></a>
       </div>
